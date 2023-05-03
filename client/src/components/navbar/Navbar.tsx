@@ -1,4 +1,5 @@
 // import { ReactNode } from 'react';
+import styles from "./Navbar.module.css";
 import {
   Box,
   Flex,
@@ -11,11 +12,13 @@ import {
   MenuItem,
   MenuDivider,
   useColorModeValue,
+  // useDisclosure,
   Stack,
   useColorMode,
   Center,
 } from '@chakra-ui/react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+import { css } from '@emotion/react';
 
 // const NavLink = ({ children }: { children: ReactNode }) => (
 //   <Link
@@ -40,7 +43,7 @@ export default function Nav() {
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <Box>Logo</Box>
 
-          <Flex alignItems={'center'} display={'flex'} justifyContent={'space-evenly'} width={'40%'} className='nav-btn' whiteSpace={'nowrap'}>
+          <Flex alignItems={'center'} display={'flex'} justifyContent={'space-evenly'} width={'40%'} className={styles.navBtn} whiteSpace={'nowrap'}>
             <Box>Home</Box>
             <Box>Our Doctors</Box>
             <Box>Our Services</Box>
