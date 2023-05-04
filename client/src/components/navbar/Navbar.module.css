@@ -1,3 +1,14 @@
+body{
+    position: relative;
+}
+
+.navbarContainer{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+}
+
 .navBtn {
     margin-left: 40%;
     /* background-color: rgb(218, 230, 230); */

@@ -1,0 +1,53 @@
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* :root{
+    --bodyColor:#1a202c;
+}
+body{
+    background-color: var(--bodyColor);
+} */
+
+.typing {
+    display: inline-block;
+    white-space: nowrap;
+    overflow-y: hidden;
+    margin-right: 0.5rem;
+}
+
+.typing::before {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-right: 0.5rem;
+    content: '';
+    border-left: 2px solid orange;
+    left: 0;
+    top: 10;
+    height: 4%;
+    width: 100%;
+    position: absolute;
+    background-color: white;
+    animation: animate 4s steps(12) infinite;
+}
+
+@keyframes animate {
+
+    30%,
+    60% {
+        left: 100%;
+    }
+
+    100% {
+        left: 0%;
+    }
+}
+
+.doctorImage{
+    width: 40%;
+}
+
+.doctorImage2{
+    width: 100%;
+}
