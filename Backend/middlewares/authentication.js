@@ -7,7 +7,7 @@ const authentication = async (req, res, next) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const user = await db.user.findOne({
       where: {
-        id: decoded.id,
+        email: decoded.email,
       },
     });
 
@@ -15,7 +15,6 @@ const authentication = async (req, res, next) => {
       throw new Error();
     }
 
-    delete user.dataValues.password;
     req.user = user;
     next();
   } catch (error) {

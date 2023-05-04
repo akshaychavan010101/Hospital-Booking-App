@@ -1,14 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
-  const user = sequelize.define("user", {
+  const doctors = sequelize.define("doctors", {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    password: {
+    speciality: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -16,11 +12,23 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    role: {
+    qualification: {
       type: DataTypes.STRING,
-      defaultValue: "user",
+      allowNull: false,
+    },
+    department: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    availability: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    fee: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
   });
 
-  return user;
+  return doctors;
 };
