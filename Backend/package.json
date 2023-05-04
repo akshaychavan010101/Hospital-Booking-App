@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "backende",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,6 +11,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "nodemon": "^2.0.22"
+    "bcrypt": "^5.1.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mysql2": "^3.2.4",
+    "sequelize": "^6.31.1",
+    "sequelize-cli": "^6.6.0"
   }
 }
