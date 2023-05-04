@@ -223,7 +223,7 @@
 //   )}
 
 
-import { ReactNode } from 'react';
+// import { ReactNode } from 'react';
 import styles from "./Navbar.module.css";
 import {
   Box,
@@ -234,21 +234,22 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  MenuDivider,
+  // MenuDivider,
   useColorModeValue,
   Stack,
   useColorMode,
   Center,
-  Icon,
+  // Icon,
 } from '@chakra-ui/react';
-import { ChevronDownIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
+import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+// import { ChevronDownIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 
 export default function Nav() {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
     <>
-      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
+      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4} className={styles.navbarContainer}>
         <Flex
           h={16}
           alignItems={'center'}
