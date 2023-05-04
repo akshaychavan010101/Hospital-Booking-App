@@ -63,8 +63,6 @@ export default function HomeMiddleComp() {
     );
 }
 
-
-
 export const Illustration = (props: IconProps) => {
     return (
         <Icon
