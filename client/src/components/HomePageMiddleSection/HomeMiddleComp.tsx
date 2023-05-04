@@ -1,5 +1,6 @@
 import styles from "./HomeMiddleComp.module.css"
-
+import doctorImage from "../../assets/medical-5459654__340.png"
+import doctorImage2 from "../../assets/doctor-6810750_960_720.png"
 
 import {
     Flex,
@@ -55,6 +56,8 @@ export default function HomeMiddleComp() {
                         mt={{ base: 12, sm: 16 }}
                     />
                 </Flex>
+            <img src={doctorImage} alt="doctorImage" className={styles.doctorImage} />
+            <img src={doctorImage2} alt="doctorImage" className={styles.doctorImage2} />
             </Stack>
         </Container>
     );

@@ -25,7 +25,7 @@ body{
     border-left: 2px solid orange;
     left: 0;
     top: 10;
-    height: 7%;
+    height: 4%;
     width: 100%;
     position: absolute;
     background-color: white;
@@ -42,4 +42,12 @@ body{
     100% {
         left: 0%;
     }
+}
+
+.doctorImage{
+    width: 40%;
+}
+
+.doctorImage2{
+    width: 100%;
 }

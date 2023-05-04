@@ -225,6 +225,9 @@
 
 // import { ReactNode } from 'react';
 import styles from "./Navbar.module.css";
+import logo from "../../assets/logo.png";
+// import { Link as ReachLink } from '@reach/router';
+
 import {
   Box,
   Flex,
@@ -242,6 +245,7 @@ import {
   // Icon,
 } from '@chakra-ui/react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+import { Link } from "react-router-dom";
 // import { ChevronDownIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 
 export default function Nav() {
@@ -256,7 +260,11 @@ export default function Nav() {
           justifyContent={'space-between'}
           wrap={{ base: 'wrap', md: 'nowrap' }}  // Added wrap property
         >
-          <Box>Logo</Box>
+          <Box marginLeft={'30px'}>
+            <Link to='/'>
+              <img src={logo} alt="Logo" width={'100px'} />
+            </Link>
+          </Box>
 
           <Flex
             alignItems={'center'}
