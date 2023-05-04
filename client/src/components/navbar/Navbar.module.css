@@ -1,3 +1,7 @@
+body{
+    position: relative;
+}
+
 .navbarContainer{
     position: fixed;
     top: 0;
