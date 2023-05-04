@@ -1,3 +1,10 @@
-.navBtn{
+.navBtn {
     margin-left: 40%;
+    /* background-color: rgb(218, 230, 230); */
+    display: none;
+}
+
+.navBtnChild {
+    cursor: pointer;
+    border-radius: 10px;
 }
