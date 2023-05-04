@@ -248,7 +248,7 @@ import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { Link } from "react-router-dom";
 // import { ChevronDownIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 
-export default function Nav() {
+export default function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
