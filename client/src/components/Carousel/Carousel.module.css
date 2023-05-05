@@ -1,0 +1,77 @@
+.carousel {
+    position: relative;
+    overflow: hidden;
+    outline: auto;
+    height: 30vh;
+    margin-top: 10vh;
+  }
+  
+  .carousel-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .carousel-slide {
+    flex-shrink: 0;
+    width: 100%;
+    margin-right: 20px;
+  }
+  
+  .carousel-slide:last-of-type {
+    margin-right: 0;
+  }
+  
+  .carousel-image {
+    width: 100%;
+    height: auto;
+  }
+  
+  .carousel-controls {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+  
+  .carousel-control {
+    cursor: pointer;
+    font-size: 24px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .carousel-control:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .carousel-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .carousel-indicator {
+    cursor: pointer;
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .carousel-indicator.active {
+    background-color: #fff;
+  }
+  
