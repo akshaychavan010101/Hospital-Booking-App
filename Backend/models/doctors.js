@@ -8,14 +8,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    mobile: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    qualification: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     department: {
       type: DataTypes.STRING,
       allowNull: false,

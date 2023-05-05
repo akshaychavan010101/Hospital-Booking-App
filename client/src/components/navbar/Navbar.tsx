@@ -223,8 +223,11 @@
 //   )}
 
 
-import { ReactNode } from 'react';
+// import { ReactNode } from 'react';
 import styles from "./Navbar.module.css";
+import logo from "../../assets/logo.png";
+// import { Link as ReachLink } from '@reach/router';
+
 import {
   Box,
   Flex,
@@ -234,28 +237,34 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  MenuDivider,
+  // MenuDivider,
   useColorModeValue,
   Stack,
   useColorMode,
   Center,
-  Icon,
+  // Icon,
 } from '@chakra-ui/react';
-import { ChevronDownIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
+import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+import { Link } from "react-router-dom";
+// import { ChevronDownIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 
 export default function Nav() {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
     <>
-      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
+      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4} className={styles.navbarContainer}>
         <Flex
           h={16}
           alignItems={'center'}
           justifyContent={'space-between'}
           wrap={{ base: 'wrap', md: 'nowrap' }}  // Added wrap property
         >
-          <Box>Logo</Box>
+          <Box marginLeft={'30px'}>
+            <Link to='/'>
+              <img src={logo} alt="Logo" width={'100px'} />
+            </Link>
+          </Box>
 
           <Flex
             alignItems={'center'}
