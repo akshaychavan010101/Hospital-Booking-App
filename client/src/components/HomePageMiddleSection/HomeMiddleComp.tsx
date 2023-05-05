@@ -11,13 +11,12 @@ import {
     Button,
     Icon,
     IconProps,
-    background,
     useColorModeValue,
 } from '@chakra-ui/react';
 
 export default function HomeMiddleComp() {
-    const body = document.body;
-    const bgColor = window.getComputedStyle(body).getPropertyValue('background-color');
+    // const body = document.body;
+    // const bgColor = window.getComputedStyle(body).getPropertyValue('background-color');
 
     return (
         <Container maxW={'5xl'} marginTop={'5'}>

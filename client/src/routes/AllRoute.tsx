@@ -1,3 +1,4 @@
+// import React from 'react'
 import { Route, Routes } from 'react-router'
 import HomePage from '../pages/home/HomePage'
 import LoginPage from '../pages/login/LoginPage'
@@ -15,9 +16,8 @@ function AllRoute() {
       <Route path="/user/signUp" element={<SignupPage/>} />
       <Route path="/user/dashboard" element={<UserDashboardPage/>} />
       <Route path="/admin/dashboard" element={<AdminDashboardPage/>} />
+      <Route path="/ourdoctors" element={<Ourdoctors/>} />
       <Route path='*' element={<NotFoundPage/>}/>
-      <Route path="/ourdoctors" element={<Ourdoctors/>}/>
-
     </Routes>
   )
 }

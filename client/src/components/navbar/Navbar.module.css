@@ -7,6 +7,7 @@ body{
     top: 0;
     width: 100%;
     z-index: 2;
+    border-bottom: 1px solid silver;
 }
 
 .navBtn {
