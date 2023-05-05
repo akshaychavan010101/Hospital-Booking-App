@@ -4,11 +4,74 @@ const jwt = require("jsonwebtoken");
 const { auth } = require("../middlewares/auth");
 require("dotenv").config();
 const db = require("../models/index");
-const { user } = require("../models/index");
 const { authentication } = require("../middlewares/authentication");
-
 const UserRouter = express.Router();
 
+
+// new code for google auth
+const passport = require("../oauths/google.oauth");
+const { v4: uuidv4 } = require("uuid");
+
+// Initialize Passport.js
+UserRouter.use(passport.initialize());
+UserRouter.use(passport.session());
+
+// Set up Google authentication route (hit this to start the Google authentication process)
+UserRouter.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
+
+// Set up routes (after the verification is done by hitting this route user will be redirected to the home page with the user details, also save the user details in the database here)
+UserRouter.get("/google-verify", async (req, res) => {
+  try {
+    // check if the email is verified from the googel if not send error
+    if (!req.user || !req.user.emails[0].verified || !req.user.id) {
+      res.status(400).json({ msg: "Invalid access to route" });
+      return;
+    }
+
+    const { displayName, emails } = req.user;
+
+    const user = {
+      name: displayName,
+      email: emails[0].value,
+      password: uuidv4(),
+      mobile: "0000000000",
+      role: "user",
+    };
+
+    // save the user details in the database here
+    const userInDb = await db.user.findOne({
+      where: {
+        email: user.email,
+      },
+    });
+
+    if (!userInDb) {
+      await db.user.create(user);
+    }
+    //  send the token to the frontend
+    const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, {
+      expiresIn: "7h",
+    });
+
+    res.send({
+      msg: "Google authentication successful!",
+      token: token,
+      user: user,
+    });
+  } catch (error) {
+    res.status(500).json({ msg: "Something went wrong" });
+  }
+});
+
+// ------------------ google authentication  ends---------------------
+
+
+// -------------------- gihub authentication ends  -------------------------
+
+// -------------------- Normal routes -------------------------
 
 UserRouter.post("/signup", async (req, res) => {
   const { name, email, password, mobile, role } = req.body;
@@ -22,7 +85,7 @@ UserRouter.post("/signup", async (req, res) => {
     });
 
     if (user) {
-      res.status(400).send("User already exists");
+      res.status(400).json({ msg: "User already exists" });
       return;
     }
 
@@ -35,12 +98,12 @@ UserRouter.post("/signup", async (req, res) => {
     });
 
     if (data) {
-      res.status(201).send("User created");
+      res.status(201).json({ msg: "User created" });
     } else {
-      res.status(500).send("Something went wrong");
+      res.status(500).json({ msg: "Something went wrong" });
     }
   } catch (error) {
-    res.status(500).send("Something went wrong");
+    res.status(500).json({ msg: "Something went wrong" });
   }
 });
 
@@ -54,7 +117,7 @@ UserRouter.post("/login", async (req, res) => {
     });
 
     if (!user) {
-      res.status(400).send("User does not exist");
+      res.status(400).json({ msg: "User does not exist" });
       return;
     }
 
@@ -62,7 +125,7 @@ UserRouter.post("/login", async (req, res) => {
       if (result) {
         const token = jwt.sign(
           {
-            id: user.id,
+            email: user.email,
           },
           process.env.JWT_SECRET,
           {
@@ -75,26 +138,26 @@ UserRouter.post("/login", async (req, res) => {
           userName: user.name,
         });
       } else {
-        res.status(400).send("Invalid credentials");
+        res.status(400).json({ msg: "Invalid credentials" });
       }
     });
   } catch (err) {
     console.log(err);
-    res.status(500).send("Something went wrong");
+    res.status(500).json({ msg: "Something went wrong" });
   }
 });
 
 UserRouter.get("/userDetails", authentication, async (req, res) => {
   try {
     if (!req.user) {
-      res.status(400).send("User not found");
+      res.status(400).json({ msg: "User not found" });
       return;
     }
     res.status(200).json({
       user: req.user,
     });
   } catch (error) {
-    res.status(500).send("Something went wrong");
+    res.status(500).json({ msg: "Something went wrong" });
   }
 });
 
@@ -105,7 +168,7 @@ UserRouter.get("/logout", authentication, (req, res) => {
       message: "Logged out successfully",
     });
   } catch (error) {
-    res.status(500).send("Something went wrong");
+    res.status(500).json({ msg: "Something went wrong" });
   }
 });
 
@@ -120,7 +183,7 @@ UserRouter.get(
         users,
       });
     } catch (error) {
-      res.status(500).send("Something went wrong");
+      res.status(500).json({ msg: "Something went wrong" });
     }
   }
 );
@@ -139,7 +202,7 @@ UserRouter.delete(
       });
 
       if (!user) {
-        res.status(400).send("User does not exist");
+        res.status(400).json({ msg: "User does not exist" });
         return;
       }
 
@@ -149,9 +212,9 @@ UserRouter.delete(
         },
       });
 
-      res.status(200).send("User deleted");
+      res.status(200).json({ msg: "User deleted" });
     } catch (error) {
-      res.status(500).send("Something went wrong");
+      res.status(500).json({ msg: "Something went wrong" });
     }
   }
 );
@@ -172,7 +235,7 @@ UserRouter.put(
       });
 
       if (!user) {
-        res.status(400).send("User does not exist");
+        res.status(400).json({ msg: "User does not exist" });
         return;
       }
 
@@ -182,9 +245,9 @@ UserRouter.put(
         },
       });
 
-      res.status(200).send("User updated");
+      res.status(200).json({ msg: "User updated" });
     } catch (error) {
-      res.status(500).send("Something went wrong");
+      res.status(500).json({ msg: "Something went wrong" });
     }
   }
 );
