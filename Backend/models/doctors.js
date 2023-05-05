@@ -4,6 +4,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    avatar: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     speciality: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -14,6 +18,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     availability: {
       type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    rating: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
     fee: {
