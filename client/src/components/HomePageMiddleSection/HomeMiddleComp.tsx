@@ -13,13 +13,14 @@ import {
     IconProps,
     useColorModeValue,
 } from '@chakra-ui/react';
+import { Link } from "react-router-dom";
 
 export default function HomeMiddleComp() {
     // const body = document.body;
     // const bgColor = window.getComputedStyle(body).getPropertyValue('background-color');
 
     return (
-        <Container maxW={'5xl'} marginTop={'5'}>
+        <Container maxW={'5xl'}>
             <Stack position={'relative'}
                 textAlign={'center'}
                 align={'center'}
@@ -31,10 +32,10 @@ export default function HomeMiddleComp() {
                     lineHeight={'110%'}
                     _before={
                         {
-                            backgroundColor:useColorModeValue('white', '#1a202c')
+                            backgroundColor: useColorModeValue('white', '#1a202c')
                         }
                     }
-                    >
+                >
                     Appointment Booking{' '}
                     <Text as={'span'} color={'orange.400'}>
                         made easy
@@ -51,10 +52,10 @@ export default function HomeMiddleComp() {
                         colorScheme={'orange'}
                         bg={'orange.400'}
                         _hover={{ bg: 'orange.500' }}>
-                        Get started
+                        <Link to="/user/login">Get started</Link>
                     </Button>
                     <Button rounded={'full'} px={6}>
-                        Learn more
+                        <Link to="/services">Services</Link>
                     </Button>
                 </Stack>
                 <Flex w={'full'}>

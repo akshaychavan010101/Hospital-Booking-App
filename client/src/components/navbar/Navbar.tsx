@@ -66,7 +66,7 @@ export default function Navbar() {
               padding={'6px 8px'}
               _hover={{ backgroundColor: 'rgb(218, 230, 230)',color:'black'  }}
             >
-              Our Services
+              <Link to="/services">Our Services</Link>
             </Box>
             <Box
               className={styles.navBtnChild}
@@ -122,8 +122,8 @@ export default function Navbar() {
                   </Box>
                   <Box textAlign={'center'}>john.doe@example.com</Box>
                   <br />
-                  <MenuItem>Profile</MenuItem>
-                  <MenuItem>Settings</MenuItem>
+                  <MenuItem>Change Profile Photo</MenuItem>
+                  <MenuItem><Link to="/user/dashboard">Dashboard</Link></MenuItem>
                   <MenuItem>Logout</MenuItem>
                 </MenuList>
               </Menu>

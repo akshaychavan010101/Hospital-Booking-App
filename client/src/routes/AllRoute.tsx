@@ -7,6 +7,7 @@ import NotFoundPage from '../pages/NotFound/NotFoundPage'
 import AdminDashboardPage from '../pages/admin/AdminDashboardPage'
 import UserDashboardPage from '../pages/user/UserDashboardPage'
 import Ourdoctors from '../pages/OurDoctors/OurDoctorsPage'
+import ServicePage from '../pages/services/ServicePage'
 
 function AllRoute() {
   return (
@@ -17,6 +18,7 @@ function AllRoute() {
       <Route path="/user/dashboard" element={<UserDashboardPage/>} />
       <Route path="/admin/dashboard" element={<AdminDashboardPage/>} />
       <Route path="/ourdoctors" element={<Ourdoctors/>} />
+      <Route path="/services" element={<ServicePage/>} />
       <Route path='*' element={<NotFoundPage/>}/>
     </Routes>
   )

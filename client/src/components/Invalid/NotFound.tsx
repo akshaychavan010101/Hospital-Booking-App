@@ -1,4 +1,5 @@
 import { Box, Heading, Text, Button } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 
 export default function NotFound() {
   return (
@@ -23,7 +24,7 @@ export default function NotFound() {
         bgGradient="linear(to-r, teal.400, teal.500, teal.600)"
         color="white"
         variant="solid">
-        Go to Home
+          <Link to="/">Go To Home</Link>
       </Button>
     </Box>
   );

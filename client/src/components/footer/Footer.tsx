@@ -102,6 +102,7 @@ export default function Footer() {
           style={{display:"flex",gap:"5px"}}
           >
             <h3 style={{fontWeight:600}}>Attribution:-</h3>
+            <a target="_blank" href="https://chakra-templates.dev/">Chakra</a>
             <a target="_blank" href="https://www.flaticon.com/free-icons/patient" title="patient icons">Flaticon</a>
             <a target="_blank" href="https://getcssscan.com/css-box-shadow-examples">Getcssscan</a>
             <a target="_blank" href="https://www.pexels.com/">Pexels</a>
