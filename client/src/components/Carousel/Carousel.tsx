@@ -1,5 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "./Carousel.module.css";
+import poster1 from "../../assets/poster1.jpg";
+import poster2 from "../../assets/poster2.jpg";
+import poster3 from "../../assets/poster3.jpg";
 
 type Slide = {
   id: number;
@@ -10,22 +13,22 @@ type Slide = {
 const slides: Slide[] = [
   {
     id: 1,
-    imgUrl: "https://via.placeholder.com/400x200/abcdef",
+    imgUrl: `${poster1}`,
     altText: "Slide 1"
   },
   {
     id: 2,
-    imgUrl: "https://via.placeholder.com/400x200/fedcba",
+    imgUrl: `${poster2}`,
     altText: "Slide 2"
   },
   {
     id: 3,
-    imgUrl: "https://via.placeholder.com/400x200/abcdef",
+    imgUrl: `${poster3}`,
     altText: "Slide 3"
   },
   {
     id: 4,
-    imgUrl: "https://via.placeholder.com/400x200/fedcba",
+    imgUrl: `${poster2}`,
     altText: "Slide 4"
   }
 ];

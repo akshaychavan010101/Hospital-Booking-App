@@ -1,9 +1,7 @@
 .carousel {
     position: relative;
     overflow: hidden;
-    outline: auto;
-    height: 30vh;
-    margin-top: 10vh;
+    margin: 10vh;
   }
   
   .carousel-container {

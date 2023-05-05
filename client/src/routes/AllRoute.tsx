@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router'
 import HomePage from '../pages/home/HomePage'
 import LoginPage from '../pages/login/LoginPage'
 import SignupPage from '../pages/signup/SignupPage'
+import NotFoundPage from '../pages/NotFound/NotFoundPage'
 
 function AllRoute() {
   return (
@@ -10,7 +11,7 @@ function AllRoute() {
       <Route path='/' element={<HomePage />} />
       <Route path="/user/login" element={<LoginPage/>} />
       <Route path="/user/signUp" element={<SignupPage/>} />
-      <Route path='*' element/>
+      <Route path='*' element={<NotFoundPage/>}/>
     </Routes>
   )
 }
