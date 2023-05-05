@@ -18,4 +18,14 @@ body{
 .navBtnChild {
     cursor: pointer;
     border-radius: 10px;
+    /* background-color: rgb(208, 248, 244); */
+}
+.signin{
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: rgb(255, 56, 139);
+    color: aliceblue;
+}
+.signin:hover{
+    color: rgb(18, 22, 24);
 }

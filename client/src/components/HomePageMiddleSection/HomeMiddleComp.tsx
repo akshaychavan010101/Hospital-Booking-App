@@ -11,11 +11,13 @@ import {
     Button,
     Icon,
     IconProps,
+    background,
+    useColorModeValue,
 } from '@chakra-ui/react';
 
 export default function HomeMiddleComp() {
-    // const body = document.body;
-    // const bgColor = window.getComputedStyle(body).getPropertyValue('background-color');
+    const body = document.body;
+    const bgColor = window.getComputedStyle(body).getPropertyValue('background-color');
 
     return (
         <Container maxW={'5xl'} marginTop={'5'}>
@@ -27,7 +29,13 @@ export default function HomeMiddleComp() {
                 <Heading className={styles.typing}
                     fontWeight={600}
                     fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
-                    lineHeight={'110%'}>
+                    lineHeight={'110%'}
+                    _before={
+                        {
+                            backgroundColor:useColorModeValue('white', '#1a202c')
+                        }
+                    }
+                    >
                     Appointment Booking{' '}
                     <Text as={'span'} color={'orange.400'}>
                         made easy
