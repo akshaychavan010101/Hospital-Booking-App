@@ -7,7 +7,6 @@ const db = require("../models/index");
 const { authentication } = require("../middlewares/authentication");
 const UserRouter = express.Router();
 
-
 // new code for google auth
 const passport = require("../oauths/google.oauth");
 const { v4: uuidv4 } = require("uuid");
@@ -67,7 +66,6 @@ UserRouter.get("/google-verify", async (req, res) => {
 });
 
 // ------------------ google authentication  ends---------------------
-
 
 // -------------------- gihub authentication ends  -------------------------
 
@@ -246,6 +244,27 @@ UserRouter.put(
       });
 
       res.status(200).json({ msg: "User updated" });
+    } catch (error) {
+      res.status(500).json({ msg: "Something went wrong" });
+    }
+  }
+);
+
+UserRouter.get(
+  "/all-admins",
+  authentication,
+  auth(["admin"]),
+  async (req, res) => {
+    try {
+      const admins = await db.user.findAll({
+        where: {
+          role: "admin",
+        },
+      });
+
+      res.status(200).json({
+        admins,
+      });
     } catch (error) {
       res.status(500).json({ msg: "Something went wrong" });
     }
