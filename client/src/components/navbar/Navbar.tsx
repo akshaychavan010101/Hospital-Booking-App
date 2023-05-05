@@ -1,5 +1,6 @@
 import styles from "./Navbar.module.css";
 import logo from "../../assets/logo.png";
+import patientLogo from "../../assets/patientLogo.png";
 
 import {
   Box,
@@ -10,14 +11,12 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  // MenuDivider,
   useColorModeValue,
   Stack,
   useColorMode,
   Center,
-  // Icon,
-} from "@chakra-ui/react";
-import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+} from '@chakra-ui/react';
+import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { Link } from "react-router-dom";
 // import { ChevronDownIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 
@@ -77,7 +76,7 @@ export default function Navbar() {
               padding={"6px 8px"}
               _hover={{ backgroundColor: "rgb(218, 230, 230)", color: "black" }}
             >
-              Our Services
+              <Link to="/services">Our Services</Link>
             </Box>
             <Box
               className={styles.navBtnChild}
@@ -112,17 +111,18 @@ export default function Navbar() {
                   minW={0}
                 >
                   <Avatar
-                    size={"sm"}
-                    src={"https://avatars.dicebear.com/api/male/username.svg"}
+                  outline={'auto'}
+                    size={'sm'}
+                    src={patientLogo}
                   />
                 </MenuButton>
                 <MenuList alignItems={"center"}>
                   <br />
                   <Center>
                     <Avatar
-                      size={"xl"}
-                      src={"https://avatars.dicebear.com/api/male/username.svg"}
-                      margin={"0 auto"}
+                      size={'xl'}
+                      src={patientLogo}
+                      margin={'0 auto'}
                     />
                   </Center>
                   <br />
@@ -131,8 +131,8 @@ export default function Navbar() {
                   </Box>
                   <Box textAlign={"center"}>john.doe@example.com</Box>
                   <br />
-                  <MenuItem>Profile</MenuItem>
-                  <MenuItem>Settings</MenuItem>
+                  <MenuItem>Change Profile Photo</MenuItem>
+                  <MenuItem><Link to="/user/dashboard">Dashboard</Link></MenuItem>
                   <MenuItem>Logout</MenuItem>
                 </MenuList>
               </Menu>
