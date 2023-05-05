@@ -13,7 +13,7 @@ import {
   useColorModeValue,
   // Grid,
 } from "@chakra-ui/react";
-
+import image from "../../assets/poster2.jpg"
 import { useState, useEffect } from "react";
 
 export default function OurTeam() {
@@ -28,7 +28,9 @@ export default function OurTeam() {
       .catch((err) => console.log(err.message));
   }, []);
   return (
-    <Flex
+    <div>
+      <img src={image} alt=""/>
+      <Flex
       flexWrap={"wrap"}
       gap={"30px"}
       justifyContent={"center"}
@@ -150,5 +152,7 @@ export default function OurTeam() {
         );
       })}
     </Flex>
+    </div>
+    
   );
 }
