@@ -1,34 +1,42 @@
 module.exports = (sequelize, DataTypes) => {
-  const doctors = sequelize.define("doctors", {
-    name: {
+  const Descdoctors = sequelize.define("descdoctors", {
+    education: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    avatar: {
+    Professional: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    speciality: {
+    Certifications: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    department: {
+    Expertise: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    availability: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    rating: {
+    Honors_and_Awards: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    fee: {
+    Publications: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    Professional_Memberships: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    mobile: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    doctor_id: {
       type: DataTypes.STRING,
       allowNull: false,
     },
   });
 
-  return doctors;
+  return Descdoctors;
 };

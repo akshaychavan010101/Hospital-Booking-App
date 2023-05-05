@@ -1,4 +1,3 @@
-// import React from 'react'
 import { Route, Routes } from 'react-router'
 import HomePage from '../pages/home/HomePage'
 import LoginPage from '../pages/login/LoginPage'
@@ -6,6 +5,7 @@ import SignupPage from '../pages/signup/SignupPage'
 import NotFoundPage from '../pages/NotFound/NotFoundPage'
 import AdminDashboardPage from '../pages/admin/AdminDashboardPage'
 import UserDashboardPage from '../pages/user/UserDashboardPage'
+import Ourdoctors from '../pages/OurDoctors/OurDoctorsPage'
 
 function AllRoute() {
   return (
@@ -16,6 +16,8 @@ function AllRoute() {
       <Route path="/user/dashboard" element={<UserDashboardPage/>} />
       <Route path="/admin/dashboard" element={<AdminDashboardPage/>} />
       <Route path='*' element={<NotFoundPage/>}/>
+      <Route path="/ourdoctors" element={<Ourdoctors/>}/>
+
     </Routes>
   )
 }
