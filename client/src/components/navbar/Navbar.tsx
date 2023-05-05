@@ -1,4 +1,3 @@
-
 import styles from "./Navbar.module.css";
 import logo from "../../assets/logo.png";
 
@@ -17,8 +16,8 @@ import {
   useColorMode,
   Center,
   // Icon,
-} from '@chakra-ui/react';
-import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+} from "@chakra-ui/react";
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
 // import { ChevronDownIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 
@@ -27,100 +26,110 @@ export default function Navbar() {
 
   return (
     <>
-      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4} className={styles.navbarContainer}>
+      <Box
+        bg={useColorModeValue("gray.100", "gray.900")}
+        px={4}
+        className={styles.navbarContainer}
+      >
         <Flex
           h={16}
-          alignItems={'center'}
-          justifyContent={'space-between'}
-          wrap={{ base: 'wrap', md: 'nowrap' }}  // Added wrap property
+          alignItems={"center"}
+          justifyContent={"space-between"}
+          wrap={{ base: "wrap", md: "nowrap" }} // Added wrap property
         >
-          <Box marginLeft={'30px'}>
-            <Link to='/'>
-              <img src={logo} alt="Logo" width={'100px'} />
+          <Box marginLeft={"30px"}>
+            <Link to="/">
+              <img src={logo} alt="Logo" width={"100px"} />
             </Link>
           </Box>
 
           <Flex
-            alignItems={'center'}
-            display={{ base: 'none', md: 'flex' }}  // Added display property
-            justifyContent={'space-evenly'}
-            width={'40%'}  // Added width property
+            alignItems={"center"}
+            display={{ base: "none", md: "flex" }} // Added display property
+            justifyContent={"space-evenly"}
+            width={"40%"} // Added width property
             className={styles.navBtn}
-            whiteSpace={'nowrap'}  // Added whiteSpace property
+            whiteSpace={"nowrap"} // Added whiteSpace property
           >
+            <Link to="/">
             <Box
               className={styles.navBtnChild}
-              padding={'6px 8px'}
-              _hover={{ backgroundColor: 'rgb(218, 230, 230)',color:'black'  }}
+              padding={"6px 8px"}
+              _hover={{ backgroundColor: "rgb(218, 230, 230)", color: "black" }}
             >
               Home
             </Box>
+            </Link>
+            <Link to="/ourdoctors">
+              <Box
+                className={styles.navBtnChild}
+                padding={"6px 8px"}
+                _hover={{
+                  backgroundColor: "rgb(218, 230, 230)",
+                  color: "black",
+                }}
+              >
+                Our Doctors
+              </Box>
+            </Link>
             <Box
               className={styles.navBtnChild}
-              padding={'6px 8px'}
-              _hover={{ backgroundColor: 'rgb(218, 230, 230)',color:'black'  }}
-            >
-              Our Doctors
-            </Box>
-            <Box
-              className={styles.navBtnChild}
-              padding={'6px 8px'}
-              _hover={{ backgroundColor: 'rgb(218, 230, 230)',color:'black'  }}
+              padding={"6px 8px"}
+              _hover={{ backgroundColor: "rgb(218, 230, 230)", color: "black" }}
             >
               Our Services
             </Box>
             <Box
               className={styles.navBtnChild}
-              padding={'6px 8px'}
-              _hover={{ backgroundColor: 'rgb(218, 230, 230)',color:'black' }}
+              padding={"6px 8px"}
+              _hover={{ backgroundColor: "rgb(218, 230, 230)", color: "black" }}
             >
               Appointments
             </Box>
             <Link to="/user/login">
               <Box
                 className={styles.signin}
-                padding={'6px 8px'}
-                _hover={{ backgroundColor: 'rgb(218, 230, 230)' }}
+                padding={"6px 8px"}
+                _hover={{ backgroundColor: "rgb(218, 230, 230)" }}
               >
                 SignIn
               </Box>
             </Link>
-
           </Flex>
 
-          <Flex alignItems={'center'}>
-            <Stack direction={'row'} spacing={7}>
+          <Flex alignItems={"center"}>
+            <Stack direction={"row"} spacing={7}>
               <Button onClick={toggleColorMode}>
-                {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+                {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
               </Button>
               <Menu>
                 <MenuButton
                   as={Button}
-                  rounded={'full'}
-                  variant={'link'}
-                  cursor={'pointer'}
-                  outline={'auto'}
+                  rounded={"full"}
+                  variant={"link"}
+                  cursor={"pointer"}
+                  outline={"auto"}
                   minW={0}
                 >
                   <Avatar
-                    size={'sm'}
-                    src={'https://avatars.dicebear.com/api/male/username.svg'}
+                    size={"sm"}
+                    src={"https://avatars.dicebear.com/api/male/username.svg"}
                   />
                 </MenuButton>
-                <MenuList alignItems={'center'}>
+                <MenuList alignItems={"center"}>
                   <br />
                   <Center>
                     <Avatar
-                      size={'xl'}
-                      src={'https://avatars.dicebear.com/api/male/username.svg'}
-                      margin={'0 auto'}
+                      size={"xl"}
+                      src={"https://avatars.dicebear.com/api/male/username.svg"}
+                      margin={"0 auto"}
                     />
                   </Center>
                   <br />
-                  <Box fontWeight={'bold'} textAlign={'center'}>
+                  <Box fontWeight={"bold"} textAlign={"center"}>
                     John Doe
                   </Box>
-                  <Box textAlign={'center'}>john.doe@example.com</Box>
+                  <Box textAlign={"center"}>john.doe@example.com</Box>
                   <br />
                   <MenuItem>Profile</MenuItem>
                   <MenuItem>Settings</MenuItem>
