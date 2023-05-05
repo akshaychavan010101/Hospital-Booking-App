@@ -12,6 +12,7 @@ const { AppointmentRouter } = require("./routes/appointments.routes");
 const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 const jwt = require("jsonwebtoken");
+const { DoctorRouter } = require("./routes/doctors.routes");
 
 // ------------
 
@@ -32,6 +33,7 @@ app.use(
 
 app.use("/user", UserRouter);
 app.use("/appointments", AppointmentRouter);
+app.use("/doctors", DoctorRouter);
 
 app.get("/", (req, res) => {
   res.send("welcome to the Hospital Appointment Booking System");
