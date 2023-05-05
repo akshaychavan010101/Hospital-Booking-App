@@ -1,6 +1,7 @@
 
 import styles from "./Navbar.module.css";
 import logo from "../../assets/logo.png";
+import patientLogo from "../../assets/patientLogo.png";
 
 import {
   Box,
@@ -11,12 +12,10 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  // MenuDivider,
   useColorModeValue,
   Stack,
   useColorMode,
   Center,
-  // Icon,
 } from '@chakra-ui/react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { Link } from "react-router-dom";
@@ -103,8 +102,9 @@ export default function Navbar() {
                   minW={0}
                 >
                   <Avatar
+                  outline={'auto'}
                     size={'sm'}
-                    src={'https://avatars.dicebear.com/api/male/username.svg'}
+                    src={patientLogo}
                   />
                 </MenuButton>
                 <MenuList alignItems={'center'}>
@@ -112,7 +112,7 @@ export default function Navbar() {
                   <Center>
                     <Avatar
                       size={'xl'}
-                      src={'https://avatars.dicebear.com/api/male/username.svg'}
+                      src={patientLogo}
                       margin={'0 auto'}
                     />
                   </Center>
