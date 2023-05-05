@@ -1,16 +1,15 @@
 import Footer from '../../components/footer/Footer'
-import Login from '../../components/login/Login'
 import Navbar from '../../components/navbar/Navbar'
+import UserDashboard from '../../components/userDashboard/UserDashboard'
 
-function LoginPage() {
+function UserDashboardPage() {
   return (
-    
     <div>
       <Navbar />
-      <Login />
+      <UserDashboard/>
       <Footer />
     </div>
   )
 }
 
-export default LoginPage
+export default UserDashboardPage

@@ -17,10 +17,6 @@ body{
 }
 
 .typing::before {
-    display: inline-block;
-    white-space: nowrap;
-    overflow: hidden;
-    margin-right: 0.5rem;
     content: '';
     border-left: 2px solid orange;
     left: 0;

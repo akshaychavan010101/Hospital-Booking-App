@@ -11,6 +11,7 @@ import {
     Button,
     Icon,
     IconProps,
+    useColorModeValue,
 } from '@chakra-ui/react';
 
 export default function HomeMiddleComp() {
@@ -18,7 +19,7 @@ export default function HomeMiddleComp() {
     // const bgColor = window.getComputedStyle(body).getPropertyValue('background-color');
 
     return (
-        <Container maxW={'5xl'} marginTop={'20'}>
+        <Container maxW={'5xl'} marginTop={'5'}>
             <Stack position={'relative'}
                 textAlign={'center'}
                 align={'center'}
@@ -27,7 +28,13 @@ export default function HomeMiddleComp() {
                 <Heading className={styles.typing}
                     fontWeight={600}
                     fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
-                    lineHeight={'110%'}>
+                    lineHeight={'110%'}
+                    _before={
+                        {
+                            backgroundColor:useColorModeValue('white', '#1a202c')
+                        }
+                    }
+                    >
                     Appointment Booking{' '}
                     <Text as={'span'} color={'orange.400'}>
                         made easy
@@ -56,8 +63,20 @@ export default function HomeMiddleComp() {
                         mt={{ base: 12, sm: 16 }}
                     />
                 </Flex>
-            <img src={doctorImage} alt="doctorImage" className={styles.doctorImage} />
-            <img src={doctorImage2} alt="doctorImage" className={styles.doctorImage2} />
+                <Text color={'gray.500'} maxW={'3xl'}>
+                    You will have in person consultation with your doctor whenever you want. Our team is eager to take care of your health
+                    by all the efforts that we have.
+
+                </Text>
+                <img src={doctorImage} alt="doctorImage" className={styles.doctorImage} />
+                <Text color={'gray.500'} maxW={'3xl'}>
+                    Right decision at right time can make you healthy, we won't let you getting weak. We are here to serve you.
+                    Better hospitality, Better privileges. Make your Life Easy.
+                </Text>
+                <img src={doctorImage2} alt="doctorImage" className={styles.doctorImage2} />
+                <Text>
+                    We are just one Appointment away from you. Let us give chance to save your Life with our highly skilled and efficient Doctors and medical practitioners.
+                </Text>
             </Stack>
         </Container>
     );

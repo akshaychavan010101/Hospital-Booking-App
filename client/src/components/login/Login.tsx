@@ -1,3 +1,5 @@
+import styles from "./login.module.css";
+
 import {
     Flex,
     Box,
@@ -15,7 +17,7 @@ import {
   
   export default function Login() {
     return (
-      <Flex
+      <Flex className={styles.loginContainer}
         minH={'100vh'}
         align={'center'}
         justify={'center'}
