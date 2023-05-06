@@ -10,7 +10,7 @@ import {
 export default function UserDashboard() {
     return (
         <div className={styles.dashContainer}>
-            <Heading color={useColorModeValue('orange', "orange")}
+            <Heading color={useColorModeValue('#3375FF', "#FF33FF")}
                 fontWeight={600}
                 fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
                 lineHeight={'110%'} >Your Appointments</Heading>

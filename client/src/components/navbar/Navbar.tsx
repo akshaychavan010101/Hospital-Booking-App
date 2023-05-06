@@ -83,7 +83,7 @@ export default function Navbar() {
               padding={"6px 8px"}
               _hover={{ backgroundColor: "rgb(218, 230, 230)", color: "black" }}
             >
-              Appointments
+              <Link to="/appointment">Appointments</Link>
             </Box>
             <Link to="/user/login">
               <Box
