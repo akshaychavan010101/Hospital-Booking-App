@@ -6,6 +6,9 @@ require("dotenv").config();
 const db = require("../models/index");
 const { authentication } = require("../middlewares/authentication");
 const UserRouter = express.Router();
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SG_API_KEY);
+
 
 // new code for google auth
 const passport = require("../oauths/google.oauth");
@@ -96,6 +99,22 @@ UserRouter.post("/signup", async (req, res) => {
     });
 
     if (data) {
+      const msg = {
+        to: `${email}`,
+        from: 'sourabh.rajput.22082001@gmail.com', // Use the email address or domain you verified above
+        subject: 'find my doc',
+        text: 'hello customer for registering',
+        html: `<div><h3 style="color:black">Welcome to Findmydoc</h3><p style="color: black; font-size: 10px;">Welcome to our website Findmydoc ! ${name} sir We are thrilled to have you here and look forward to providing you with valuable information, resources, and an engaging community. Whether you're here to learn something new, connect with like-minded individuals, or explore our offerings, we hope you'll find everything you need to make the most of your time here. Thank you for joining us, and we can't wait to see what you'll bring to our community!</p></div>`,
+      };
+      sgMail
+      .send(msg)
+      .then(() => {console.log("data is send")}, error => {
+        console.error(error);
+    
+        if (error.response) {
+          console.error(error.response.body)
+        }
+      });
       res.status(201).json({ msg: "User created" });
     } else {
       res.status(500).json({ msg: "Something went wrong" });
