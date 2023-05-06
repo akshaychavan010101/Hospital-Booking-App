@@ -1,21 +1,16 @@
 import {
-  // Badge,
   Button,
-  // Center,
   Flex,
   Heading,
   Image,
-  // Link,
-  // SimpleGrid,
   Stack,
   Text,
-  // grid,
   useColorModeValue,
-  // Grid,
 } from "@chakra-ui/react";
 import image from "../../assets/poster2.jpg";
 import { useState, useEffect } from "react";
 import styles from "./ourDoctors.module.css";
+import { Link } from "react-router-dom";
 // import { json } from "react-router-dom";
 
 export default function OurTeam() {
@@ -26,10 +21,9 @@ export default function OurTeam() {
     fetch("https://jittery-shirt-tuna.cyclic.app/doctors/all-doctors")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.doctors);
         setCards(data.doctors);
       })
-      .catch((err) => console.log(err.message))
+      .catch((err) => alert(err.message))
       .finally(() => {
         setIsLoading(false);
       });
@@ -44,12 +38,10 @@ export default function OurTeam() {
         mt={"6rem"}
         mb={"4rem"}
       >
-        {isLoading ? <h1 style={{fontSize:"2rem"}}>Loading...</h1> : null}
+        {isLoading ? <h1 style={{ fontSize: "2rem" }}>Loading...</h1> : null}
         {Cards?.map((items) => {
-          // console.log("FFFF",items)
           return (
-            <Stack
-              // outline={"auto"}
+            <Stack key={items["id"]}
               borderWidth="1px"
               borderRadius="lg"
               w={{ sm: "100%", md: "540px" }}
@@ -153,7 +145,7 @@ export default function OurTeam() {
                       );
                     }}
                   >
-                    Book Appointment
+                    <Link to="/appointment">Book Appointment</Link>
                   </Button>
                   <Button
                     flex={1}
