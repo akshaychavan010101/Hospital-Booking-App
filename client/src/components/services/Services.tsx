@@ -20,6 +20,7 @@ import {
     IconProps,
     useColorModeValue,
 } from '@chakra-ui/react';
+import { Link } from "react-router-dom"
 
 export default function Services() {
     return (
@@ -70,7 +71,8 @@ export default function Services() {
                                 colorScheme={'red'}
                                 bg={'red.400'}
                                 _hover={{ bg: 'red.500' }}>
-                                Book Appointment
+                                    <Link to="/appointment">Book Appointment</Link>
+                                
                             </Button>
                             {/* <Button
                                 rounded={'full'}
