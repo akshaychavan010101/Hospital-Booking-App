@@ -1,11 +1,11 @@
 import {
-  Badge,
+  // Badge,
   Button,
   // Center,
   Flex,
   Heading,
   Image,
-  Link,
+  // Link,
   // SimpleGrid,
   Stack,
   Text,
@@ -13,72 +13,93 @@ import {
   useColorModeValue,
   // Grid,
 } from "@chakra-ui/react";
-import image from "../../assets/poster2.jpg"
+import image from "../../assets/poster2.jpg";
 import { useState, useEffect } from "react";
+import styles from "./ourDoctors.module.css";
+// import { json } from "react-router-dom";
 
 export default function OurTeam() {
   const [Cards, setCards] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
+    setIsLoading(true);
+    fetch("https://jittery-shirt-tuna.cyclic.app/doctors/all-doctors")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        setCards(data);
+        console.log(data.doctors);
+        setCards(data.doctors);
       })
-      .catch((err) => console.log(err.message));
+      .catch((err) => console.log(err.message))
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, []);
   return (
     <div>
-      <img src={image} alt=""/>
+      <img className={styles.banner1} src={image} alt="" />
       <Flex
-      flexWrap={"wrap"}
-      gap={"30px"}
-      justifyContent={"center"}
-      mt={"6rem"}
-      mb={"4rem"}
-    >
-      {Cards?.map((items) => {
-        return (
-          <Stack
-            outline={"auto"}
-            borderWidth="1px"
-            borderRadius="lg"
-            w={{ sm: "100%", md: "540px" }}
-            height={{ sm: "476px", md: "20rem" }}
-            direction={{ base: "column", md: "row" }}
-            bg={useColorModeValue("white", "gray.900")}
-            boxShadow={"2xl"}
-            padding={4}
-          >
-            <Flex flex={1} bg="blue.200">
-              <Image objectFit="cover" boxSize="100%" src={items["image"]} />
-            </Flex>
+        flexWrap={"wrap"}
+        gap={"30px"}
+        justifyContent={"center"}
+        mt={"6rem"}
+        mb={"4rem"}
+      >
+        {isLoading ? <h1 style={{fontSize:"2rem"}}>Loading...</h1> : null}
+        {Cards?.map((items) => {
+          // console.log("FFFF",items)
+          return (
             <Stack
-              flex={1}
-              flexDirection="column"
-              justifyContent="center"
-              alignItems="center"
-              p={1}
-              pt={2}
+              // outline={"auto"}
+              borderWidth="1px"
+              borderRadius="lg"
+              w={{ sm: "100%", md: "540px" }}
+              height={{ sm: "476px", md: "20rem" }}
+              direction={{ base: "column", md: "row" }}
+              bg={useColorModeValue("white", "gray.900")}
+              boxShadow={"2xl"}
+              padding={4}
             >
-              <Heading fontSize={"2xl"} fontFamily={"body"}>
-                {"BatMan"}
-              </Heading>
-              <Text fontWeight={600} color={"gray.500"} size="sm" mb={4}>
-                @lindsey_jam3s
-              </Text>
-              <Text
-                textAlign={"center"}
-                color={useColorModeValue("gray.700", "gray.400")}
-                px={3}
+              <Flex flex={1} bg="blue.200">
+                <Image objectFit="fill" boxSize="100%" src={items["avatar"]} />
+              </Flex>
+              <Stack
+                flex={1}
+                flexDirection="column"
+                justifyContent="center"
+                alignItems="center"
+                p={1}
+                pt={2}
               >
-                Specialist in :-
-                <Link href={"#"} color={"blue.400"}>
+                <Heading fontSize={"2xl"} fontFamily={"body"}>
+                  {items["name"]}
+                </Heading>
+                <Text fontWeight={600} color={"gray.500"} size="sm" mb={4}>
+                  {items["department"]}
+                </Text>
+                <Text
+                  textAlign={"center"}
+                  color={useColorModeValue("gray.700", "gray.400")}
+                  px={3}
+                >
+                  Speciality :- {items["speciality"]}
+                  {/* <Link href={"#"} color={"blue.400"}>
                   #tag
                 </Link>
-                me in your posts
-              </Text>
-              <Stack
+                me in your posts */}
+                </Text>
+
+                <Text
+                  textAlign={"center"}
+                  color={useColorModeValue("gray.700", "gray.400")}
+                  px={3}
+                >
+                  Rating :- {items["rating"]["length"]}
+                  {/* <Link href={"#"} color={"blue.400"}>
+                  #tag
+                </Link>
+                me in your posts */}
+                </Text>
+                {/* <Stack
                 align={"center"}
                 justify={"center"}
                 direction={"row"}
@@ -108,51 +129,56 @@ export default function OurTeam() {
                 >
                   #music
                 </Badge>
-              </Stack>
+              </Stack> */}
 
-              <Stack
-                width={"100%"}
-                mt={"2rem"}
-                direction={"row"}
-                padding={2}
-                justifyContent={"space-between"}
-                alignItems={"center"}
-              >
-                <Button
-                  flex={2}
-                  fontSize={"sm"}
-                  rounded={"full"}
-                  _focus={{
-                    bg: "gray.200",
-                  }}
+                <Stack
+                  width={"100%"}
+                  mt={"2rem"}
+                  direction={"row"}
+                  padding={2}
+                  justifyContent={"space-between"}
+                  alignItems={"center"}
                 >
-                  Book Appointment
-                </Button>
-                <Button
-                  flex={1}
-                  fontSize={"sm"}
-                  rounded={"full"}
-                  bg={"blue.400"}
-                  color={"white"}
-                  boxShadow={
-                    "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
-                  }
-                  _hover={{
-                    bg: "blue.500",
-                  }}
-                  _focus={{
-                    bg: "blue.500",
-                  }}
-                >
-                  Follow
-                </Button>
+                  <Button
+                    flex={2}
+                    fontSize={"sm"}
+                    rounded={"full"}
+                    _focus={{
+                      bg: "gray.200",
+                    }}
+                    onClick={() => {
+                      sessionStorage.setItem(
+                        "Doctor",
+                        JSON.stringify(items["id"])
+                      );
+                    }}
+                  >
+                    Book Appointment
+                  </Button>
+                  <Button
+                    flex={1}
+                    fontSize={"sm"}
+                    rounded={"full"}
+                    bg={"blue.400"}
+                    color={"white"}
+                    boxShadow={
+                      "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
+                    }
+                    _hover={{
+                      bg: "blue.500",
+                    }}
+                    _focus={{
+                      bg: "blue.500",
+                    }}
+                  >
+                    Follow
+                  </Button>
+                </Stack>
               </Stack>
             </Stack>
-          </Stack>
-        );
-      })}
-    </Flex>
+          );
+        })}
+      </Flex>
     </div>
-    
   );
 }

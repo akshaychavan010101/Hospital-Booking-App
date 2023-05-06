@@ -126,10 +126,10 @@ export default function Navbar() {
                     />
                   </Center>
                   <br />
-                  <Box fontWeight={"bold"} textAlign={"center"}>
+                  <Box id="userName" fontWeight={"bold"} textAlign={"center"}>
                     John Doe
                   </Box>
-                  <Box textAlign={"center"}>john.doe@example.com</Box>
+                  {/* <Box textAlign={"center"}>john.doe@example.com</Box> */}
                   <br />
                   <MenuItem>Change Profile Photo</MenuItem>
                   <MenuItem><Link to="/user/dashboard">Dashboard</Link></MenuItem>
