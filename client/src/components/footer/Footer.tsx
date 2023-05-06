@@ -106,7 +106,8 @@ export default function Footer() {
             <a target="_blank" href="https://www.flaticon.com/free-icons/patient" title="patient icons">Flaticon</a>
             <a target="_blank" href="https://getcssscan.com/css-box-shadow-examples">Getcssscan</a>
             <a target="_blank" href="https://www.pexels.com/">Pexels</a>
-            <a target="_blank" href="https://www.freepik.com/vectors/hospital-animation">Freepic</a>    
+            <a target="_blank" href="https://www.freepik.com/vectors/hospital-animation">Freepic</a>
+            <a target="_blank" href="https://pixabay.com/vectors/doctor-doctor-s-consultation-6810750/">Pixbay</a>
           </div>
         </SimpleGrid>
       </Container>
