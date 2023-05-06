@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": "Akshay@123",
-    "database": "findmydoc",
-    "host": "localhost",
+    "username": "sql12616364",
+    "password": "qnl7VyQ7iD",
+    "database": "sql12616364",
+    "host": "sql12.freesqldatabase.com",
     "dialect": "mysql"
   },
   "test": {
