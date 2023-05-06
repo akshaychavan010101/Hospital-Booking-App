@@ -1,3 +1,6 @@
+import {Link} from "react-router-dom" 
+// import { FcGoogle } from 'react-icons/fc';
+// import { Center} from '@chakra-ui/react';
 import {
     Flex,
     Box,
@@ -5,24 +8,65 @@ import {
     FormLabel,
     Input,
     InputGroup,
-    HStack,
+    // HStack,
     InputRightElement,
     Stack,
+    // VStack,
     Button,
     Heading,
     Text,
     useColorModeValue,
-    Link,
+    // Link,
   } from '@chakra-ui/react';
   import { useState } from 'react';
   import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
   
   export default function SignupCard() {
+    // let baseUrl = "https://jittery-shirt-tuna.cyclic.app"
     const [showPassword, setShowPassword] = useState(false);
-  
+    
+   async function handleSignup(){
+      let name:string = (document.getElementById("username") as HTMLInputElement).value;
+      let email:string = (document.getElementById("userEmail") as HTMLInputElement).value;
+      let password:string= (document.getElementById("password") as HTMLInputElement).value;
+      let mobile:string= (document.getElementById("mobile_number") as HTMLInputElement).value;
+
+      if(email == "" || password == "" || name == ""){
+        alert("Fill All The Details")
+        return;
+      }
+
+      let obj = {
+        name,
+        email,
+        password,
+        mobile
+      }
+      try {
+        let res = await fetch('https://jittery-shirt-tuna.cyclic.app/user/signup',{
+          method:"POST",
+          headers:{
+            "Content-Type": "application/json",
+            'Access-Control-Allow-Origin': '*'
+          },
+          body:JSON.stringify(obj)
+        });
+
+        let data = await res.json();
+        console.log(data);
+        if(data.msg == "User created"){
+          alert("User Registered")
+        }else{
+          alert("Fill All the")
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
     return (
       <Flex
-        minH={'100vh'}
+        minH={'110vh'}
         align={'center'}
         justify={'center'}
         bg={useColorModeValue('gray.50', 'gray.800')}>
@@ -41,28 +85,28 @@ import {
             boxShadow={'lg'}
             p={8}>
             <Stack spacing={4}>
-              <HStack>
+              {/* <VStack> */}
                 <Box>
                   <FormControl id="firstName" isRequired>
                     <FormLabel>First Name</FormLabel>
-                    <Input type="text" />
+                    <Input id="username" type="text" />
                   </FormControl>
                 </Box>
                 <Box>
-                  <FormControl id="lastName">
-                    <FormLabel>Last Name</FormLabel>
-                    <Input type="text" />
+                  <FormControl id="Mobile_number" isRequired>
+                    <FormLabel>Mobile Number</FormLabel>
+                    <Input id="mobile_number" type="text" />
                   </FormControl>
                 </Box>
-              </HStack>
+              {/* </VStack> */}
               <FormControl id="email" isRequired>
                 <FormLabel>Email address</FormLabel>
-                <Input type="email" />
+                <Input id='userEmail' type="email" />
               </FormControl>
               <FormControl id="password" isRequired>
                 <FormLabel>Password</FormLabel>
                 <InputGroup>
-                  <Input type={showPassword ? 'text' : 'password'} />
+                  <Input id='password' type={showPassword ? 'text' : 'password'} />
                   <InputRightElement h={'full'}>
                     <Button
                       variant={'ghost'}
@@ -82,13 +126,14 @@ import {
                   color={'white'}
                   _hover={{
                     bg: 'blue.500',
-                  }}>
+                  }} onClick={handleSignup}>
                   Sign up
                 </Button>
               </Stack>
+
               <Stack pt={6}>
                 <Text align={'center'}>
-                  Already a user? <Link color={'blue.400'}>Login</Link>
+                  Already a user? <Link to="/user/login" color={'blue.400'}>Login</Link>
                 </Text>
               </Stack>
             </Stack>
