@@ -48,6 +48,30 @@ AppointmentRouter.post("/book-appointment", async (req, res) => {
 
     await slots(slotDetails).save();
 
+    // reduce availability of doctor by 1
+
+    const doctor = await db.doctors.findOne({
+      where: {
+        id: doctorId,
+      },
+    });
+
+    if (!doctor) {
+      res.status(400).json({ msg: "Doctor does not exist" });
+      return;
+    }
+
+    await db.doctors.update(
+      {
+        availability: doctor.dataValues.availability - 1,
+      },
+      {
+        where: {
+          id: doctorId,
+        },
+      }
+    );
+
     if (appointment) {
       res.status(201).json({
         msg: "Appointment booked successfully",
