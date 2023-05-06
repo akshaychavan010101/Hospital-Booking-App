@@ -2,6 +2,8 @@ const express = require("express");
 const { UserRouter } = require("./routes/users.routes");
 require("dotenv").config();
 const db = require("./models/index");
+const cors = require("cors");
+const path = require("path");
 // new code for google auth
 const session = require("express-session");
 const passport = require("passport");
@@ -18,6 +20,7 @@ const { DoctorRouter } = require("./routes/doctors.routes");
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 // ------------------ Google auth -----------------------
 // Set up session (new code for google auth)
@@ -35,8 +38,11 @@ app.use("/user", UserRouter);
 app.use("/appointments", AppointmentRouter);
 app.use("/doctors", DoctorRouter);
 
-app.get("/", (req, res) => {
-  res.send("welcome to the Hospital Appointment Booking System");
+
+
+app.get("/",(req,res)=>{
+  app.use(express.static(path.join(__dirname,"../", "client")));
+  res.sendFile(path.resolve(__dirname,"../", "client","index.html"));
 });
 
 // ------------------ Google auth -----------------------
