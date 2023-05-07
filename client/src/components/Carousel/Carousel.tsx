@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "./Carousel.module.css";
 import poster1 from "../../assets/poster1.jpg";
-// import poster2 from "../../assets/poster2.jpg";
-// import poster3 from "../../assets/poster3.jpg";
+import poster2 from "../../assets/poster2.jpg";
+import poster3 from "../../assets/poster3.jpg";
 
 type Slide = {
   id: number;
@@ -40,13 +40,13 @@ const Carousel = () => {
     }
   }, [currentSlide]);
 
-  const nextSlide = () => {
-    setCurrentSlide(currentSlide === slides.length - 1 ? 0 : currentSlide + 1);
-  };
+  // const nextSlide = () => {
+  //   setCurrentSlide(currentSlide === slides.length - 1 ? 0 : currentSlide + 1);
+  // };
 
-  const prevSlide = () => {
-    setCurrentSlide(currentSlide === 0 ? slides.length - 1 : currentSlide - 1);
-  };
+  // const prevSlide = () => {
+  //   setCurrentSlide(currentSlide === 0 ? slides.length - 1 : currentSlide - 1);
+  // };
 
   return (
     <div className={styles.carousel}>
@@ -62,11 +62,11 @@ const Carousel = () => {
         ))}
       </div>
 
-      <div className="carousel__buttons">
+      {/* <div className="carousel__buttons">
         <button onClick={prevSlide}>&lt;</button>
         <button onClick={nextSlide}>&gt;</button>
-      </div>
-    </div>
+      </div> */}
+     </div>
   );
 };
 

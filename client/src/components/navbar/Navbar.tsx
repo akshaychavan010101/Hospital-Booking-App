@@ -15,13 +15,35 @@ import {
   Stack,
   useColorMode,
   Center,
-} from '@chakra-ui/react';
-import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+} from "@chakra-ui/react";
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 // import { ChevronDownIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 
 export default function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    const token = sessionStorage.getItem("token");
+    const storedUserName = sessionStorage.getItem("userName");
+    if (token && storedUserName) {
+      setIsLoggedIn(true);
+      setUserName(storedUserName);
+    } else {
+      setIsLoggedIn(false);
+      setUserName("Sign In");
+    }
+  }, []);
+
+  function Logout() {
+    sessionStorage.clear();
+    setIsLoggedIn(false);
+    window.location.reload();
+    window.location.href = "HomePage Fronend link";
+  }
 
   return (
     <>
@@ -51,13 +73,16 @@ export default function Navbar() {
             whiteSpace={"nowrap"} // Added whiteSpace property
           >
             <Link to="/">
-            <Box
-              className={styles.navBtnChild}
-              padding={"6px 8px"}
-              _hover={{ backgroundColor: "rgb(218, 230, 230)", color: "black" }}
-            >
-              Home
-            </Box>
+              <Box
+                className={styles.navBtnChild}
+                padding={"6px 8px"}
+                _hover={{
+                  backgroundColor: "rgb(218, 230, 230)",
+                  color: "black",
+                }}
+              >
+                Home
+              </Box>
             </Link>
             <Link to="/ourdoctors">
               <Box
@@ -85,15 +110,25 @@ export default function Navbar() {
             >
               <Link to="/appointment">Appointments</Link>
             </Box>
-            <Link to="/user/login">
+            {isLoggedIn ? (
               <Box
-                className={styles.signin}
+                className={styles.navBtnChild}
                 padding={"6px 8px"}
-                _hover={{ backgroundColor: "rgb(218, 230, 230)" }}
+                // _hover={{ backgroundColor: "rgb(218, 230, 230)", color: "black" }}
               >
-                SignIn
+                Hie {userName}
               </Box>
-            </Link>
+            ) : (
+              <Link to="/user/login">
+                <Box
+                  className={styles.signin}
+                  padding={"6px 8px"}
+                  _hover={{ backgroundColor: "rgb(218, 230, 230)" }}
+                >
+                  Sign In
+                </Box>
+              </Link>
+            )}
           </Flex>
 
           <Flex alignItems={"center"}>
@@ -110,30 +145,31 @@ export default function Navbar() {
                   outline={"auto"}
                   minW={0}
                 >
-                  <Avatar
-                  outline={'auto'}
-                    size={'sm'}
-                    src={patientLogo}
-                  />
+                  <Avatar outline={"auto"} size={"sm"} src={patientLogo} />
                 </MenuButton>
                 <MenuList alignItems={"center"}>
                   <br />
                   <Center>
-                    <Avatar
-                      size={'xl'}
-                      src={patientLogo}
-                      margin={'0 auto'}
-                    />
+                    <Avatar size={"xl"} src={patientLogo} margin={"0 auto"} />
                   </Center>
                   <br />
-                  <Box id="userName" fontWeight={"bold"} textAlign={"center"}>
-                    John Doe
-                  </Box>
+                  {isLoggedIn ? (
+                    <Box id="userName" fontWeight={"bold"} textAlign={"center"}>
+                      Hi {userName}
+                    </Box>
+                  ) : (
+                    <Box id="userName" fontWeight={"bold"} textAlign={"center"}>
+                      User
+                    </Box>
+                  )}
+
                   {/* <Box textAlign={"center"}>john.doe@example.com</Box> */}
                   <br />
                   <MenuItem>Change Profile Photo</MenuItem>
-                  <MenuItem><Link to="/user/dashboard">Dashboard</Link></MenuItem>
-                  <MenuItem>Logout</MenuItem>
+                  <MenuItem>
+                    <Link to="/user/dashboard">Dashboard</Link>
+                  </MenuItem>
+                  <MenuItem onClick={Logout}>Logout</MenuItem>
                 </MenuList>
               </Menu>
             </Stack>

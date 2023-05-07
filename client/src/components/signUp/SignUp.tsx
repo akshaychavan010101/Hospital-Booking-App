@@ -56,6 +56,9 @@ import {
         console.log(data);
         if(data.msg == "User created"){
           alert("User Registered")
+          setTimeout(()=>{
+            window.location.href="https://jittery-shirt-tuna.cyclic.app/user/login"
+          },3000)
         }else{
           alert("Fill All the")
         }
