@@ -177,7 +177,7 @@ import {
           mb={16}
           mx={'auto'}>
           {testimonials.map((cardInfo, index) => (
-            <TestimonialCard {...cardInfo} index={index} />
+            <TestimonialCard key={index} {...cardInfo} index={index} />
           ))}
         </SimpleGrid>
         <Box>

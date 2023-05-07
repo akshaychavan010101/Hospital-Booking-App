@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { AiOutlineGithub } from "react-icons/ai";
+import Swal from "sweetalert2";
+
 
 import {
   Flex,
@@ -20,6 +22,7 @@ import {
 } from "@chakra-ui/react";
 
 export default function Login() {
+  const frontendUrl = "http://localhost:5173";
   const baseURL = "https://jittery-shirt-tuna.cyclic.app";
   // const payload const [submitted, setSubmitted] = useState(false);
   // const [email, setEmail] = useState("")
@@ -34,7 +37,8 @@ export default function Login() {
     ).value;
 
     if (email == "" || password == "") {
-      alert("Fill All Details");
+      Swal.fire("Fill All Details");
+
       return;
     }
 
@@ -54,16 +58,16 @@ export default function Login() {
       const data = await fData.json();
       // console.log("HELLO",data);
       if (data.token) {
-        sessionStorage.setItem("token", JSON.stringify(data.token));
-        sessionStorage.setItem("userName", JSON.stringify(data.userName));
+        sessionStorage.setItem("token",(data.token));
+        sessionStorage.setItem("userName", (data.userName));
         setLogin(true);
-        alert("Succefully Logged In");
-        setTimeout(() => {
-          window.location.href = "https://jittery-shirt-tuna.cyclic.app/";
-        }, 3000);
+        Swal.fire(data.msg);
+        if(data.msg == "Login Successful"){
+          window.location.href = `${frontendUrl}`
+        }
       } else {
         setLogin(false);
-        alert("Your email is not registered");
+        Swal.fire("Your email is not registered");
       }
     } catch (error) {
       alert(error);
@@ -178,7 +182,7 @@ export default function Login() {
                 Don't have an account?{" "}
                 <Link to="/user/signup" color={"blue.400"}>
                   {" "}
-                  Click Here
+                  <u>Click Here</u>
                 </Link>
               </Text>
             </Stack>
