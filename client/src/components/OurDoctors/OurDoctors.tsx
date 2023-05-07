@@ -14,8 +14,13 @@ import { Link } from "react-router-dom";
 // import { json } from "react-router-dom";
 
 export default function OurTeam() {
-  const [Cards, setCards] = useState([]);
+ 
+  const [Cards , setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+// const [search, setsearch] = useState("");
+  const [filteredData, setfilteredData] = useState([]);
+ 
+  // do this fetching in the parent component and pass the data as props to this component
   useEffect(() => {
     setIsLoading(true);
     fetch("https://jittery-shirt-tuna.cyclic.app/doctors/all-doctors")
@@ -28,9 +33,39 @@ export default function OurTeam() {
         setIsLoading(false);
       });
   }, []);
+
+ 
+
+  const handleSearch = () => {
+    let input = document.getElementById("input_bar") as HTMLInputElement;
+    if(input.value == ""){
+      setCards(Cards)
+      return;
+    }
+    // setsearch(input.value.toLowerCase());
+  
+  let arr = Cards;
+  const FData = arr.filter((item : any,{}) => {
+    return item.name.toLowerCase().includes(input.value.toLowerCase());
+  });
+  setfilteredData(FData);
+  setCards(filteredData);
+};
+
   return (
     <div>
       <img className={styles.banner1} src={image} alt="" />
+      
+      <div>
+      <input
+        className="search_box"
+        type="text"
+        placeholder="Search Groceries"
+        // value={search}
+        id="input_bar"
+        onChange={handleSearch}
+      />
+      </div>
       <Flex
         flexWrap={"wrap"}
         gap={"30px"}
