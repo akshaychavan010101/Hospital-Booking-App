@@ -10,6 +10,7 @@ import Ourdoctors from '../pages/OurDoctors/OurDoctorsPage'
 import ServicePage from '../pages/services/ServicePage'
 import AppointmentPage from '../pages/Appointment/AppointmentPage'
 import DotorDetailsPage from '../pages/DoctorDetails/DotorDetailsPage'
+import Notification from '../pages/notifications/Notification'
 
 function AllRoute() {
   return (
@@ -23,6 +24,7 @@ function AllRoute() {
       <Route path="/services" element={<ServicePage/>} />
       <Route path="/appointment" element={<AppointmentPage/>} />
       <Route path="/doctordetails" element={<DotorDetailsPage/>} />
+      <Route path="/notifications" element={<Notification/>} />
       <Route path='*' element={<NotFoundPage/>}/>
     </Routes>
   )

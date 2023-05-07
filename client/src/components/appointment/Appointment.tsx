@@ -59,7 +59,7 @@ const Appointment = () => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "authorization": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFrc2hheTEyM0BnbWFpbC5jb20iLCJpYXQiOjE2ODM0NTE4NzUsImV4cCI6MTY4MzQ3NzA3NX0.kZVz92Wp21BaSK8xQ9pEC40xJLkAw249OXCnuzKhRZ0`
+                "authorization": `${token}`
             },
             body: JSON.stringify(payload),
         })
