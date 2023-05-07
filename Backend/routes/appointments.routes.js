@@ -13,7 +13,7 @@ AppointmentRouter.use(authentication);
 
 AppointmentRouter.post("/book-appointment", async (req, res) => {
   try {
-    const { patientName, doctorName, date, time, doctorId } = req.body;
+    const {  doctorName, date, time, doctorId } = req.body;
 
     // check the slot availability
     const slotBooked = await slots.findOne({

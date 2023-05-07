@@ -6,8 +6,6 @@ import { motion } from "framer-motion";
 const Appointment = () => {
     const baseUrl = `https://jittery-shirt-tuna.cyclic.app`;
     const [fetchData, setFetchData] = useState([]);
-    // const [time,setTime] = useState(0);
-    // const [time,setTime] = useState(0);
 
     useEffect(() => {
         fetch(`${baseUrl}/doctors/all-doctors`)
@@ -24,6 +22,12 @@ const Appointment = () => {
         const date = document.getElementById("date") as HTMLInputElement;
         const doctor = document.getElementById("doctor") as HTMLInputElement;
         const time = document.getElementById("Time") as HTMLInputElement;
+
+        if(date.value == "" || doctor.value == "" || time.value == ""){
+            alert("Please fill all the fields");
+            return;
+        }
+
       
 
         let dname = "";
@@ -42,23 +46,28 @@ const Appointment = () => {
             time: time.value,
             doctorId: doctor.value,
         }
+       
+    
+        // get the parsed token from session storage write syntax in typescript
+        let token = sessionStorage.getItem("token");
+        token = token? JSON.parse(token): "";
 
+        
         
 
         fetch(`${baseUrl}/appointments/book-appointment`,{
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${localStorage.getItem("token")}`
+                "authorization": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFrc2hheTEyM0BnbWFpbC5jb20iLCJpYXQiOjE2ODM0NTE4NzUsImV4cCI6MTY4MzQ3NzA3NX0.kZVz92Wp21BaSK8xQ9pEC40xJLkAw249OXCnuzKhRZ0`
             },
             body: JSON.stringify(payload),
         })
         .then(res => {return res.json()})
         .then(data => {
             alert(data.msg);
-            console.log(data);
         }
-        )
+        ).catch(err => {alert(err.msg)})
     }
 
    
