@@ -1,7 +1,8 @@
 .dashContainer {
-    margin-top: 10vh;
     text-align: center;
-    width: 100%;
+    width: 80%;
+    margin-left: 15vw;
+
 }
 
 .grid {
@@ -68,6 +69,7 @@
 
     .dashContainer {
         font-size: medium;
+        margin-left: 8vw;
     }
 
     .buttonA, .buttonB {
@@ -88,7 +90,10 @@
 
     .dashContainer {
         font-size: small;
+        margin-left: 4vw;
+
     }
+
 
     .card {
         gap: 25px;

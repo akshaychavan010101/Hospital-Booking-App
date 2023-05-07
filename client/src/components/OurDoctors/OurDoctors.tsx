@@ -14,12 +14,10 @@ import { Link } from "react-router-dom";
 // import { json } from "react-router-dom";
 
 export default function OurTeam() {
- 
-  const [Cards , setCards] = useState([]);
+  const frontendUrl = "http://localhost:5173";
+  const [Cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-// const [search, setsearch] = useState("");
-  const [filteredData, setfilteredData] = useState([]);
- 
+
   // do this fetching in the parent component and pass the data as props to this component
   useEffect(() => {
     setIsLoading(true);
@@ -34,38 +32,9 @@ export default function OurTeam() {
       });
   }, []);
 
- 
-
-  const handleSearch = () => {
-    let input = document.getElementById("input_bar") as HTMLInputElement;
-    if(input.value == ""){
-      setCards(Cards)
-      return;
-    }
-    // setsearch(input.value.toLowerCase());
-  
-  let arr = Cards;
-  const FData = arr.filter((item : any,{}) => {
-    return item.name.toLowerCase().includes(input.value.toLowerCase());
-  });
-  setfilteredData(FData);
-  setCards(filteredData);
-};
-
   return (
     <div>
       <img className={styles.banner1} src={image} alt="" />
-      
-      <div>
-      <input
-        className="search_box"
-        type="text"
-        placeholder="Search Groceries"
-        // value={search}
-        id="input_bar"
-        onChange={handleSearch}
-      />
-      </div>
       <Flex
         flexWrap={"wrap"}
         gap={"30px"}
@@ -86,8 +55,15 @@ export default function OurTeam() {
               boxShadow={"2xl"}
               padding={4}
             >
-              <Flex flex={1} bg="blue.200">
-                <Image objectFit="fill" boxSize="100%" src={items["avatar"]} />
+              <Flex flex={1} bg="blue.200" onClick={() => {
+                window.location.href = `${frontendUrl}/doctordetails`
+              }}>
+                <Image objectFit="fill" boxSize="100%" src={items["avatar"]} onClick={() => {
+                      sessionStorage.setItem(
+                        "Doctor",
+                        (items["id"])
+                      );
+                    }} />
               </Flex>
               <Stack
                 flex={1}
@@ -173,12 +149,7 @@ export default function OurTeam() {
                     _focus={{
                       bg: "gray.200",
                     }}
-                    onClick={() => {
-                      sessionStorage.setItem(
-                        "Doctor",
-                        JSON.stringify(items["id"])
-                      );
-                    }}
+                    
                   >
                     <Link to="/appointment">Book Appointment</Link>
                   </Button>
@@ -197,8 +168,14 @@ export default function OurTeam() {
                     _focus={{
                       bg: "blue.500",
                     }}
+                    onClick={() => {
+                      sessionStorage.setItem(
+                        "Doctor",
+                        (items["id"])
+                      );
+                    }}
                   >
-                    Follow
+                    <Link to={"/doctordetails"}>Follow</Link>
                   </Button>
                 </Stack>
               </Stack>

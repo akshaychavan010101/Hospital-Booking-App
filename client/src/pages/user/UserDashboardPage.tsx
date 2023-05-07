@@ -1,13 +1,11 @@
-import Footer from '../../components/footer/Footer'
-import Navbar from '../../components/navbar/Navbar'
+import Sidebar from '../../components/sidebar/Sidebar'
 import UserDashboard from '../../components/userDashboard/UserDashboard'
 
 function UserDashboardPage() {
   return (
     <div>
-      <Navbar />
-      <UserDashboard/>
-      <Footer />
+      <Sidebar />
+      <UserDashboard />
     </div>
   )
 }

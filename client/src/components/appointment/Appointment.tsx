@@ -1,9 +1,11 @@
 import styles from "./Appointment.module.css"
 import { useState, useEffect } from "react";
-import { Box, Button, FormControl, FormLabel, Heading, Input, Select, Stack, Textarea } from "@chakra-ui/react";
+import { Box, Button, FormControl, FormLabel, Heading, Input, Select, Stack} from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import Swal from "sweetalert2";
 
 const Appointment = () => {
+    const frontendURl = "http://localhost:5173";
     const baseUrl = `https://jittery-shirt-tuna.cyclic.app`;
     const [fetchData, setFetchData] = useState([]);
 
@@ -24,11 +26,9 @@ const Appointment = () => {
         const time = document.getElementById("Time") as HTMLInputElement;
 
         if(date.value == "" || doctor.value == "" || time.value == ""){
-            alert("Please fill all the fields");
+            Swal.fire("Please fill all the fields");
             return;
         }
-
-      
 
         let dname = "";
         for(let i=0;i<fetchData.length;i++){
@@ -37,9 +37,6 @@ const Appointment = () => {
                 break;
             }
         }
-
-        
-        
         const payload = {
             date: date.value,
             doctorName: dname,
@@ -49,11 +46,7 @@ const Appointment = () => {
        
     
         // get the parsed token from session storage write syntax in typescript
-        let token = sessionStorage.getItem("token");
-        token = token? JSON.parse(token): "";
-
-        
-        
+        let token = sessionStorage.getItem("token") || "";
 
         fetch(`${baseUrl}/appointments/book-appointment`,{
             method: "POST",
@@ -66,13 +59,12 @@ const Appointment = () => {
         .then(res => {return res.json()})
         .then(data => {
             alert(data.msg);
+            if(data.msg == "Appointment booked successfully"){
+                window.location.href = `${frontendURl}/user/dashboard`
+            }
         }
         ).catch(err => {alert(err.msg)})
     }
-
-   
-   
-
 
     return (
         <Box as="form" p={6} bg="white" borderRadius="md" shadow="md" marginTop={"10vh"} textAlign={"center"}>
@@ -115,10 +107,6 @@ const Appointment = () => {
                         <option value="0">No</option>
                         <option value="1">Yes</option>
                     </Select>
-                </FormControl>
-                <FormControl id="message">
-                    <FormLabel fontWeight="bold">Message</FormLabel>
-                    <Textarea name="message" bg="gray.50" border="none" borderRadius="md" />
                 </FormControl>
                 <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                     <Button type="submit" colorScheme="teal" bg="teal.500" borderRadius="md" _hover={{ bg: "teal.600" }} onClick={(event)=>{

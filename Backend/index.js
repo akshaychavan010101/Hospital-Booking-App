@@ -39,10 +39,10 @@ app.use("/appointments", AppointmentRouter);
 app.use("/doctors", DoctorRouter);
 
 
-
 app.get("/",(req,res)=>{
-  app.use(express.static(path.join(__dirname,"../", "client")));
-  res.sendFile(path.resolve(__dirname,"../", "client","index.html"));
+  console.log("test")
+  app.use(express.static(path.join(__dirname,"../", "client","dist")));
+  res.sendFile(path.resolve(__dirname,"../", "client","dist","index.html"));
 });
 
 // ------------------ Google auth -----------------------

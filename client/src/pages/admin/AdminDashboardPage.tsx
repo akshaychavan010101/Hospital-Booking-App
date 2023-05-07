@@ -1,13 +1,11 @@
 import AdminDashboard from "../../components/admin/AdminDashboard"
-import Footer from "../../components/footer/Footer"
-import Navbar from "../../components/navbar/Navbar"
+import Sidebar from "../../components/sidebar/Sidebar"
 
 function AdminDashboardPage() {
   return (
     <div>
-      <Navbar />
-      <AdminDashboard/>
-      <Footer />
+      <Sidebar />
+      <AdminDashboard />
     </div>
   )
 }

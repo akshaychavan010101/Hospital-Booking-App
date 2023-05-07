@@ -12,8 +12,6 @@ function Notify() {
     const baseURL = "https://jittery-shirt-tuna.cyclic.app";
 
     let token: string = sessionStorage.getItem('token') || ''
-    token = JSON.parse(token);
-
     
     useEffect(() => {
         fetch(`${baseURL}/appointments/notifications`,{

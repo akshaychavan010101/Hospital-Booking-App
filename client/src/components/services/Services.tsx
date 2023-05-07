@@ -71,7 +71,7 @@ export default function Services() {
                                 colorScheme={'red'}
                                 bg={'red.400'}
                                 _hover={{ bg: 'red.500' }}>
-                                    <Link to="/appointment">Book Appointment</Link>
+                                    <Link to="/appointment"><Link to="/appointment">Book Appointment</Link></Link>
                                 
                             </Button>
                             {/* <Button
@@ -220,7 +220,7 @@ export default function Services() {
                                 colorScheme={'red'}
                                 bg={'red.400'}
                                 _hover={{ bg: 'red.500' }}>
-                                Book Appointment
+                                <Link to="/appointment"><Link to="/appointment">Book Appointment</Link></Link>
                             </Button>
                             {/* <Button
                                 rounded={'full'}
@@ -278,7 +278,7 @@ export default function Services() {
                                 colorScheme={'red'}
                                 bg={'red.400'}
                                 _hover={{ bg: 'red.500' }}>
-                                Book Appointment
+                                <Link to="/appointment">Book Appointment</Link>
                             </Button>
                             {/* <Button
                                 rounded={'full'}
@@ -426,7 +426,7 @@ export default function Services() {
                                 colorScheme={'red'}
                                 bg={'red.400'}
                                 _hover={{ bg: 'red.500' }}>
-                                Book Appointment
+                                <Link to="/appointment">Book Appointment</Link>
                             </Button>
                             {/* <Button
                                 rounded={'full'}
@@ -484,7 +484,7 @@ export default function Services() {
                                 colorScheme={'red'}
                                 bg={'red.400'}
                                 _hover={{ bg: 'red.500' }}>
-                                Book Appointment
+                                <Link to="/appointment">Book Appointment</Link>
                             </Button>
                             {/* <Button
                                 rounded={'full'}
