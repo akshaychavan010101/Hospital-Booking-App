@@ -24,11 +24,7 @@ const Appointment = () => {
         const date = document.getElementById("date") as HTMLInputElement;
         const doctor = document.getElementById("doctor") as HTMLInputElement;
         const time = document.getElementById("Time") as HTMLInputElement;
-        // const phone = document.getElementById("phone") as HTMLInputElement;
-        // const ambulance = document.getElementById("ambulance") as HTMLInputElement;
-        // const message = document.getElementById("message") as HTMLInputElement;
-        // patientName, doctorName, date, time, doctorId
-        // const a = sessionStorage.getItem("Doctor");
+      
 
         let dname = "";
         for(let i=0;i<fetchData.length;i++){
@@ -53,8 +49,7 @@ const Appointment = () => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                // "Authorization": `Bearer ${sessionStorage.getItem("token")}`
-                "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InB1bGtpdDEyM0BnbWFpbC5jb20iLCJpYXQiOjE2ODM0MTA0ODYsImV4cCI6MTY4MzQzNTY4Nn0.rzpZEeIrUhlTe42FS6T4qcsu_Lv0lov32MJET-KkijY`
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
             },
             body: JSON.stringify(payload),
         })
