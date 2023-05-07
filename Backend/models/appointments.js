@@ -29,6 +29,12 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: "pending",
       Enumerator: ["pending", "approved", "rejected", "cancelled"],
     },
+
+    isNotified: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    
   });
 
   return appointments;
