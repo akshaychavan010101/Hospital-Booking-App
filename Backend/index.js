@@ -39,11 +39,16 @@ app.use("/user", UserRouter);
 app.use("/appointments", AppointmentRouter);
 app.use("/doctors", DoctorRouter);
 
+
 app.get("/", (req, res) => {
   console.log("test");
   app.use(express.static(path.join(__dirname, "../", "client", "dist")));
   res.sendFile(path.resolve(__dirname, "../", "client", "dist", "index.html"));
 });
+
+// app.get("/", (req, res) => {
+//   res.send("Welcome to the Hospital Booking App");
+// });
 
 // ------------------ Google auth -----------------------
 // Set up Google authentication callback route
@@ -55,7 +60,7 @@ app.get(
   (req, res) => {
     try {
       // Redirect user to the home page after authentication
-      res.redirect("http://localhost:4000/user/google-verify");
+      res.redirect("https://jittery-shirt-tuna.cyclic.app/user/google-verify");
     } catch (error) {
       console.log(error);
       res.send(error.message);
