@@ -25,6 +25,7 @@ function RenderAppointments() {
             headers: {
                 "Content-Type": "application/json",
                 'authorization' : `${sessionStorage.getItem('token')}`
+                
             }
         })
             .then((res) => {
@@ -88,6 +89,7 @@ function RenderAppointments() {
                                         headers : {
                                             "Content-Type": "application/json",
                                             "authorization":`${sessionStorage.getItem("token")}`
+                                           
                                         }
                                        })
                                        .then(res => { return res.json() })
@@ -109,6 +111,7 @@ function RenderAppointments() {
                                         headers : {
                                             "Content-Type": "application/json",
                                             "authorization":`${sessionStorage.getItem("token")}`
+                                           
                                         }
                                        })
                                        .then(res => { return res.json() })

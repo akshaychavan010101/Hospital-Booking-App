@@ -174,7 +174,7 @@ export default function Navbar() {
                   <MenuItem>
                     <Link to="/user/dashboard">Dashboard</Link>
                   </MenuItem>
-                  <MenuItem onClick={Logout}>Logout</MenuItem>
+                  <MenuItem onClick={Logout} style={{display : isLoggedIn ? "block" : "none"}}>Logout</MenuItem>
                 </MenuList>
               </Menu>
             </Stack>
