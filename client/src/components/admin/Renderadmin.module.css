@@ -1,0 +1,117 @@
+.dashContainer {
+    width: 90%;
+    margin-left: 5vw;
+    padding: 0.5rem;
+}
+.heading{
+    font-size: 2rem;
+    font-weight: 600;
+    color: #ff388b;
+    margin:10px;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    margin: auto;
+    padding: 20px;
+    gap: 20px;
+}
+
+.card {
+    display: flex;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 20px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.cardDetails {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    gap: 5px;
+}
+
+.avt {
+    outline: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.avt>img {
+    min-width: 80px;
+    max-width: 100px;
+}
+
+.btnSet {
+    gap: 30px;
+}
+
+.buttonA, .buttonB {
+    background-color: #ff388b;
+    color: aliceblue;
+    padding: 5px 20px;
+    border-radius: 10px;
+}
+
+.buttonA:hover {
+    background-color: #2bd355;
+
+}
+.buttonB:hover {
+    background-color: #f71b1b;
+
+}
+
+@media screen and (min-width:500px) and (max-width:800px) {
+    .grid {
+        grid-template-columns: repeat(1, 1fr);
+        padding: 15px;
+    }
+
+    .dashContainer {
+        font-size: medium;
+    }
+
+    .buttonA, .buttonB {
+        padding: 3px 8px;
+        border-radius: 10px;
+    }
+
+    .btnSet {
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width:499px) {
+    .grid {
+        grid-template-columns: repeat(1, 1fr);
+        padding: 10px;
+    }
+
+    .dashContainer {
+        font-size: small;
+        margin: auto;
+        width: 120%;
+
+    }
+
+
+    .card {
+        gap: 25px;
+        width: 100%;
+    }
+
+    .buttonA, .buttonB {
+        padding: 3px 8px;
+        border-radius: 10px;
+    }
+
+    .btnSet {
+        gap: 10px;
+    }
+}

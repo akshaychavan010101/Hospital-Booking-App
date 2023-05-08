@@ -1,0 +1,199 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.dashContainer {
+    width: 90%;
+    margin-left: 5vw;
+    padding: 0.5rem;
+}
+
+.heading {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #ff388b;
+    margin: 10px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    margin: auto;
+    padding: 20px;
+    gap: 20px;
+}
+
+.card {
+    display: flex;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 20px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.cardDetails {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    gap: 5px;
+}
+
+.Addbtn {
+    /* background-color: #2ae44c; */
+    /* color: aliceblue; */
+    padding: 1px 15px;
+    border: 1px solid silver;
+    border-radius: 50vmax;
+}
+
+.Addbtn:hover {
+    color: #2bd355;
+}
+
+.avt {
+    outline: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.avt>img {
+    min-width: 80px;
+    max-width: 100px;
+}
+
+.btnSet {
+    gap: 30px;
+}
+
+.buttonA,
+.buttonB {
+    background-color: #ff388b;
+    color: aliceblue;
+    padding: 5px 20px;
+    border-radius: 10px;
+}
+
+.buttonA:hover {
+    background-color: #2bd355;
+
+}
+
+.buttonB:hover {
+    background-color: #f71b1b;
+
+}
+
+.addform {
+    width: 28%;
+    position: fixed;
+    top: 10vh;
+    right: 22vh;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    text-align: right;
+    display: none;
+    padding: 10px;
+    border-radius: 15px;
+}
+.updateform{
+    width: 28%;
+    position: fixed;
+    top: 10vh;
+    right: 10vh;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    text-align: right;
+    display: none;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.lable {
+    font-size: large;
+    font-weight: 600;
+    width: 20%;
+    text-align: left;
+    white-space: nowrap;
+
+}
+.input{
+    border: 1px solid silver;
+    padding: 5px;
+    margin: 5px 0 0 0;
+    border-radius: 10px;
+}
+
+.submitbtn {
+    background-color: #2bd355;
+    padding: 5px 10px;
+    margin: 10px;
+    border-radius: 50vmax;
+    color: aliceblue;
+}
+
+.submitbtn:hover {
+    background-color: #59f37f;
+
+}
+
+@media screen and (min-width:500px) and (max-width:800px) {
+    .grid {
+        grid-template-columns: repeat(1, 1fr);
+        padding: 15px;
+    }
+
+    .dashContainer {
+        font-size: medium;
+    }
+
+    .buttonA,
+    .buttonB {
+        padding: 3px 8px;
+        border-radius: 10px;
+    }
+
+    .btnSet {
+        gap: 20px;
+    }
+
+    .addform {
+        width: 60%;
+
+    }
+}
+
+@media screen and (max-width:499px) {
+    .grid {
+        grid-template-columns: repeat(1, 1fr);
+        padding: 10px;
+    }
+
+    .dashContainer {
+        font-size: small;
+        margin: auto;
+        width: 120%;
+
+    }
+
+
+    .card {
+        gap: 25px;
+        width: 100%;
+    }
+
+    .buttonA,
+    .buttonB {
+        padding: 3px 8px;
+        border-radius: 10px;
+    }
+
+    .btnSet {
+        gap: 10px;
+    }
+}

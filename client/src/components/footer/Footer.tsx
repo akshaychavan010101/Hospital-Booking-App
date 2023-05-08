@@ -61,8 +61,8 @@ const SocialButton = ({
 export default function Footer() {
   return (
     <Box
-      bg={useColorModeValue("gray.50", "gray.900")}
-      color={useColorModeValue("gray.700", "gray.200")}
+      bg={useColorModeValue("gray.100", "gray.900")}
+      color={useColorModeValue("gray.800", "gray.200")}
     >
       <Container as={Stack} maxW={"6xl"} py={10}>
         <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8}>
@@ -98,6 +98,17 @@ export default function Footer() {
               <Image className={styles.playstore} src="../src/assets/playstore_thumbnail.png" alt="Dan Abramov" />
             </Box>
           </Stack>
+          <div 
+          style={{display:"flex",gap:"5px"}}
+          >
+            <h3 style={{fontWeight:600}}>Attribution:-</h3>
+            <a target="_blank" href="https://chakra-templates.dev/">Chakra</a>
+            <a target="_blank" href="https://www.flaticon.com/free-icons/patient" title="patient icons">Flaticon</a>
+            <a target="_blank" href="https://getcssscan.com/css-box-shadow-examples">Getcssscan</a>
+            <a target="_blank" href="https://www.pexels.com/">Pexels</a>
+            <a target="_blank" href="https://www.freepik.com/vectors/hospital-animation">Freepic</a>
+            <a target="_blank" href="https://pixabay.com/vectors/doctor-doctor-s-consultation-6810750/">Pixbay</a>
+          </div>
         </SimpleGrid>
       </Container>
 

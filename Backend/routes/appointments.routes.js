@@ -4,6 +4,7 @@ const { authentication } = require("../middlewares/authentication");
 
 const AppointmentRouter = express.Router();
 
+const Sequelize = require("sequelize");
 const db = require("../models");
 const { auth } = require("../middlewares/auth");
 const { slots } = require("../mongodb/slots.model");
@@ -13,7 +14,7 @@ AppointmentRouter.use(authentication);
 
 AppointmentRouter.post("/book-appointment", async (req, res) => {
   try {
-    const { patientName, doctorName, date, time, doctorId } = req.body;
+    const { doctorName, date, time, doctorId } = req.body;
 
     // check the slot availability
     const slotBooked = await slots.findOne({
@@ -47,6 +48,30 @@ AppointmentRouter.post("/book-appointment", async (req, res) => {
     };
 
     await slots(slotDetails).save();
+
+    // reduce availability of doctor by 1
+
+    const doctor = await db.doctors.findOne({
+      where: {
+        id: doctorId,
+      },
+    });
+
+    if (!doctor) {
+      res.status(400).json({ msg: "Doctor does not exist" });
+      return;
+    }
+
+    await db.doctors.update(
+      {
+        availability: doctor.dataValues.availability - 1,
+      },
+      {
+        where: {
+          id: doctorId,
+        },
+      }
+    );
 
     if (appointment) {
       res.status(201).json({
@@ -212,5 +237,72 @@ AppointmentRouter.get(
     }
   }
 );
+
+// notifications to the user
+
+AppointmentRouter.get("/notifications", async (req, res) => {
+  try {
+    const Op = Sequelize.Op;
+
+    const notifications1 = await db.appointments.findAll({
+      where: {
+        patientId: req.user.dataValues.id,
+        date: {
+          [Op.gte]: new Date(),
+        },
+
+        isNotified: false,
+      },
+    });
+
+    const notifications2 = await db.appointments.findAll({
+      where: {
+        patientId: req.user.dataValues.id,
+        status: {
+          [Op.or]: ["approved", "cancelled"],
+        },
+
+        isNotified: false,
+      },
+    });
+
+    const notifications = [...notifications1, ...notifications2];
+
+    res.status(200).json({
+      notifications,
+    });
+  } catch (error) {
+    res.status(500).json({ msg: "Something went wrong", error });
+  }
+});
+
+// clear notifications
+
+AppointmentRouter.patch("/clear-notifications", async (req, res) => {
+  try {
+    //  all notifications ids of the user passed in the request body will be cleared
+
+    const { ids } = req.body;
+
+    // ids is an arr so update all the notifications with the ids
+
+    ids.map(async (id) => {
+      await db.appointments.update(
+        {
+          isNotified: true,
+        },
+        {
+          where: {
+            id,
+          },
+        }
+      );
+    });
+
+    res.status(200).json({ msg: "Appointment cleared" });
+  } catch (error) {
+    res.status(500).json({ msg: "Something went wrong" });
+  }
+});
 
 module.exports = { AppointmentRouter };
