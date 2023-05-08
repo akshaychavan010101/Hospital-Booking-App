@@ -1,5 +1,7 @@
 # Find My Doctor
 
+![Logo](https://i.imgur.com/wOQJdCI.png)
+
 FindMyDoc is an online appointment booking system designed for healthcare professionals and their patients. It allows patients to search for and book appointments with doctors and other healthcare providers, based on their availability. It also provides features such as appointment notifications, patient profiles, and admin handles making it easier for healthcare providers to manage their patient appointments and care.
 
 ## Features
@@ -106,6 +108,10 @@ To run this project, you will need to add the following environment variables to
 ![App Screenshot](https://i.imgur.com/eOY9Di5.png)
 ![App Screenshot](https://i.imgur.com/h5lr6GB.png)
 ![App Screenshot](https://i.imgur.com/CuzQ1iY.png)
+
+
+## System Architecture
+![image](https://i.imgur.com/oJW6QQe.jpeg)
 
 
 ## Authors
