@@ -28,13 +28,15 @@ function RenderDoctor() {
             headers: {
                 "Content-Type": "application/json",
                 // 'authorization' : `${sessionStorage.getItem('token')}`
-                'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFrc2hheTEyM0BnbWFpbC5jb20iLCJpYXQiOjE2ODM1MzgwOTYsImV4cCI6MTY4MzU2MzI5Nn0.7yTeKAFvUr9G9pJrx6uonAx9VbIWS0VdxE94pO58VQs'
+                'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFrc2hheTEyM0BnbWFpbC5jb20iLCJpYXQiOjE2ODM1NjQ4MDAsImV4cCI6MTY4MzU5MDAwMH0.HZ9oxcGJw2sPojivO3zdvvwrJO__R7h16oPZsCb1v04'
             }
         })
             .then((res) => {
                 return res.json()
             })
             .then((data) => {
+                console.log(data);
+                
                 setAdd(false)
                 setLoading(false)
                 setDoctors(data.doctors)
@@ -244,7 +246,7 @@ function RenderDoctor() {
             </div>
             {/* { this will be comming from the fectched data and return */}
             {<div className={styles.grid}>
-                {loading ? <h1>Loading...</h1> : error ? <h1>Something went wrong</h1> : doctors.map((item) => {
+                {loading ? <h1>Loading...</h1> : error || doctors == undefined || doctors.length == 0 ? <h1>Something went wrong...😟</h1> : doctors?.map((item) => {
                     return (
                         <div className={styles.card}
                             style={{
