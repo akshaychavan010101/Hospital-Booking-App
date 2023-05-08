@@ -8,5 +8,13 @@
 </head>
 <body>
     <a href="https://github.com/login/oauth/authorize?client_id=d538c648012f0c82fe00"><button>Continue with github</button></a>
+
+    <form onsubmit="(event)=>{
+        const form = event.target;
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData);
+    }" ></form>
+
+    </form>
 </body>
 </html>

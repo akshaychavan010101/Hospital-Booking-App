@@ -16,7 +16,6 @@ interface Myprops {
 
 export default function AdminDashboard(props: Myprops) {
 
-    const { Home, Admins, Patients, Doctors, Appointments } = props;
   // function patientDisplay(){
   //     useEffect(()=>{
   //         fetch(`${baseURL}/users/all-users`)
