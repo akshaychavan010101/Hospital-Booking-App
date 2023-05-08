@@ -16,8 +16,7 @@ function Renderadmin() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        // 'authorization' : `${sessionStorage.getItem('token')}`
-        'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFrc2hheTEyM0BnbWFpbC5jb20iLCJpYXQiOjE2ODM1NjQ4MDAsImV4cCI6MTY4MzU5MDAwMH0.HZ9oxcGJw2sPojivO3zdvvwrJO__R7h16oPZsCb1v04'
+        'authorization' : `${sessionStorage.getItem('token')}`
       },
     })
       .then((res) => {
