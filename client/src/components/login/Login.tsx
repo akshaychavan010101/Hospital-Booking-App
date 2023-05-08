@@ -28,6 +28,9 @@ export default function Login() {
   // const [email, setEmail] = useState("")
   // const [pass, setPass] = useState("")
   const [login, setLogin] = useState(false);
+  if(login){
+    window.location.href = `${frontendUrl}/`;
+  }
 
   async function handleSignIn() {
     const email: string = (document.getElementById("email") as HTMLInputElement)
@@ -37,7 +40,7 @@ export default function Login() {
     ).value;
 
     if (email == "" || password == "") {
-      Swal.fire("Fill All Details");
+      Swal.fire("Please Fill All Details");
 
       return;
     }
@@ -108,7 +111,7 @@ export default function Login() {
         sessionStorage.setItem("userName", cookie.userName);
       })
       .catch((err)=>{
-        console.log(err);
+        Swal.fire(err);
       })
   }
 

@@ -1,6 +1,5 @@
 import { useState ,useEffect } from "react";
 import {
-    Flex,
     Heading,
     useColorModeValue,
 } from '@chakra-ui/react';
@@ -71,11 +70,10 @@ function Renderadmin() {
                             color: useColorModeValue('green', "white"),
                         }}>Mobile : {item["mobile"]}</h2>
 
-                        <Flex className={styles.btnSet} marginTop={'5px'} whiteSpace={'nowrap'}>
-                            <button className={styles.buttonA}>Accept</button>
-                            <button className={styles.buttonB}>Reject</button>
-                            <button className={styles.buttonA}>Status : {"Verified"}</button>
-                        </Flex>
+                        {/* <Flex className={styles.btnSet} marginTop={'5px'} whiteSpace={'nowrap'}>
+                            <button className={styles.buttonA}>Update</button>
+                            <button className={styles.buttonB}>Delete</button>
+                        </Flex> */}
                     </div>
                     <div className={styles.avt} >
                         <img src={adminIcon} alt="patient checkup" />

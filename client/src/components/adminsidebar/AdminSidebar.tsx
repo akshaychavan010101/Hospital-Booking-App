@@ -20,8 +20,6 @@ import {
 // import { IconType } from 'react-icons';
 // import { ReactText } from 'react';
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import AdminDashboardPage from "../../pages/admin/AdminDashboardPage";
 interface Myprops {
     setHome : any,
     setAdmins :any,
@@ -60,7 +58,7 @@ export default function AdminSidebar(props: Myprops) {
                 </DrawerContent>
             </Drawer>
             {/* mobilenav */}
-            <MobileNav display={{ base: 'flex', md: 'none' }} onOpen={onOpen} />
+            <MobileNav display={{ base: 'flex', md: 'none' }} onOpen={onOpen}/>
             <Box ml={{ base: 0, md: 60 }}>
                 { }
             </Box>

@@ -1,9 +1,11 @@
 import styles from "./AdminDashboard.module.css";
-import {useState, useEffect} from "react";
 
 
 import Adminstat from "./Adminstat";
 import Renderadmin from "./Renderadmin";
+import RenderDoctor from "./RenderDoctor";
+import RenderPatients from "./RenderPatients";
+import RenderAppointments from "./RenderAppointments";
 
 
 interface Myprops {
@@ -12,12 +14,12 @@ interface Myprops {
     Patients: boolean;
     Doctors: boolean;
     Appointments: boolean;
-  }
+}
 
 export default function AdminDashboard(props: Myprops) {
 
-    
-    
+
+
     // function patientDisplay(){
     //     useEffect(()=>{
     //         fetch(`${baseURL}/users/all-users`)
@@ -37,7 +39,7 @@ export default function AdminDashboard(props: Myprops) {
     //         </div>
     //     )
     // }
-    
+
     // function doctorsDisplay(){
     //     useEffect(()=>{
     //         fetch(`${baseURL}/doctors/all-doctors`)
@@ -57,7 +59,7 @@ export default function AdminDashboard(props: Myprops) {
     //         </div>
     //     )
     // }
-    
+
     // function appointmentsDisplay(){
     //     useEffect(()=>{
     //         fetch(`${baseURL}/appointments/all-appointments`)
@@ -78,12 +80,12 @@ export default function AdminDashboard(props: Myprops) {
     //     )
     // }
 
-    const {Home, Admins, Patients, Doctors, Appointments} = props;
-    
-    const [data, setData] = useState([]);
+    const { Home, Admins, Patients, Doctors, Appointments } = props;
+
+    // const [data, setData] = useState([]);
     return (
         <div className={styles.dashContainer}>
-            {Home ? <Adminstat/> : Admins ? <Renderadmin/> : Patients ? <p>patient</p> : Doctors ? <p>patient</p>: Appointments ? <p>patient</p>:  <p>Nothing</p>}
+            {Home ? <Adminstat /> : Admins ? <Renderadmin /> : Patients ? <RenderPatients /> : Doctors ? <RenderDoctor /> : Appointments ? <RenderAppointments /> : <p>Oops...😥</p>}
         </div>
     );
 }
