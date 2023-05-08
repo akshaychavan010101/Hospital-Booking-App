@@ -22,14 +22,16 @@ import {
 import { Link } from "react-router-dom";
 
 
-export default function Sidebar() {
+export default function Sidebar(props: any) {
+
+
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
         <Box bg={useColorModeValue('gray.100', 'gray.900')} >
             <SidebarContent
                 onClose={() => onClose}
                 display={{ base: 'none', md: 'block' }}
-
+                state={props}
             />
             <Drawer
                 autoFocus={false}
@@ -41,7 +43,7 @@ export default function Sidebar() {
 
                 size="full">
                 <DrawerContent>
-                    <SidebarContent onClose={onClose} />
+                    <SidebarContent onClose={onClose} state={props} />
                 </DrawerContent>
             </Drawer>
             {/* mobilenav */}
@@ -55,9 +57,13 @@ export default function Sidebar() {
 
 interface SidebarProps extends BoxProps {
     onClose: () => void;
+    state: any;
 }
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
+
+    const { setProfile, setAppointments } = rest.state;
+
     return (
         <Box
             bg={useColorModeValue('white', 'gray.900')}
@@ -75,11 +81,13 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
                 </Text>
                 <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
             </Flex>
-           <h1 style={{fontSize:"large",padding:"10px 0px 15px 40px"}} className={styles.navlink}><Link to={"/"}>Home</Link></h1>
-           <h1 style={{fontSize:"large",padding:"10px 0px 15px 40px"}} className={styles.navlink}><Link to={"/services"}>Services</Link></h1>
-           <h1 style={{fontSize:"large",padding:"10px 0px 15px 40px"}} className={styles.navlink}><Link to={"/ourdoctors"}>Doctors</Link></h1>
-           <h1 style={{fontSize:"large",padding:"10px 0px 15px 40px"}} className={styles.navlink}><Link to={"/notifications"}>Notifications</Link></h1>
-          
+            <h1 style={{ fontSize: "large", padding: "10px 0px 15px 40px" }} className={styles.navlink}><Link to={"/"}>Home</Link></h1>
+            <h1 style={{ fontSize: "large", padding: "10px 0px 15px 40px" }} className={styles.navlink}><Link to={"/services"}>Services</Link></h1>
+            <h1 style={{ fontSize: "large", padding: "10px 0px 15px 40px" }} className={styles.navlink}><Link to={"/ourdoctors"}>Doctors</Link></h1>
+            <h1 style={{ fontSize: "large", padding: "10px 0px 15px 40px" }} className={styles.navlink}><Link to={"/notifications"}>Notifications</Link></h1>
+            <h1 style={{ fontSize: "large", padding: "10px 0px 15px 40px" }} className={styles.navlink} onClick={() => {setAppointments(false); setProfile(true) }}>Profile</h1>
+            <h1 style={{ fontSize: "large", padding: "10px 0px 15px 40px" }} className={styles.navlink} onClick={() => {setProfile(false); setAppointments(true) }}>Appointments</h1>
+
         </Box>
     );
 };
