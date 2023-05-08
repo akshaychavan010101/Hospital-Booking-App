@@ -7,7 +7,15 @@ import {
     useColorModeValue,
 } from '@chakra-ui/react';
 
-export default function UserDashboard() {
+interface Myprops {
+    profile: boolean;
+    appointments: boolean;
+  }
+
+
+export default function UserDashboard(props:Myprops) {
+
+console.log(props);
 
     // useEffect(() => {
         
@@ -59,3 +67,5 @@ export default function UserDashboard() {
         </div>
     );
 }
+
+

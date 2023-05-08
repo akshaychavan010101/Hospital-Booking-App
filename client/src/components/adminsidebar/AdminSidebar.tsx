@@ -99,7 +99,6 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
             setDoctors(false);
             setAppointments(false);
                
-
            }}>Home</h1>
            <h1 style={{fontSize:"large",padding:"10px 0px 15px 40px"}} className={styles.navlink} onClick={()=>{
                 setHome(false);
