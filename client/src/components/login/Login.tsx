@@ -75,13 +75,100 @@ export default function Login() {
   }
 
   function GitHubLogin() {
-    window.location.href =
-      "https://github.com/login/oauth/authorize?client_id=d538c648012f0c82fe00";
+    
+        window.location.href = "https://github.com/login/oauth/authorize?client_id=d538c648012f0c82fe00";
+       // Set a persistent cookie with an expiration date
+       const expirationDate = new Date();
+       expirationDate.setDate(expirationDate.getDate() + 30); // 30 days from now
+       document.cookie = "userName=; expires=" + expirationDate.toUTCString();
+
+       // Read the value of the "myCookie" cookie
+       const cookies = document.cookie.split(';');
+       for(let i=0; i<cookies.length; i++) {
+         const cookie = cookies[i].trim();
+         if (cookie.startsWith("userName=")) {
+           const cookieValue = cookie.substring("userName=".length, cookie.length);
+           console.log(`Cookie value: ${cookieValue}`);
+           localStorage.setItem("userName", cookieValue);
+           break;
+         }
+       }
+
+       
+      
+      
+      fetch(`${baseURL}/get-cookies`,{
+        method: "GET",
+      })
+      .then((res)=>{
+        return res.json();
+      })
+      .then((cookie)=>{
+        sessionStorage.setItem("token", cookie.token);
+        sessionStorage.setItem("userName", cookie.userName);
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
   }
 
-  function GoogleLogin() {
-    window.location.href =
-      "https://jittery-shirt-tuna.cyclic.app/user/auth/google";
+      async function GoogleLogin() {
+       
+
+       // Set a persistent cookie with an expiration date
+          const expirationDate = new Date();
+          expirationDate.setDate(expirationDate.getDate() + 30); // 30 days from now
+          document.cookie = "myCookie=value; expires=" + expirationDate.toUTCString();
+
+          // Read the value of the "myCookie" cookie
+          const cookies = document.cookie.split(';');
+          for(let i=0; i<cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.startsWith("userName=")) {
+              const cookieValue = cookie.substring("userName=".length, cookie.length);
+              console.log(`Cookie value: ${cookieValue}`);
+              sessionStorage.setItem("userName", cookieValue);
+              break;
+            }
+          }
+
+          window.location.href =
+          "https://jittery-shirt-tuna.cyclic.app/user/auth/google";
+  
+
+     
+        // fetch(`${baseURL}/user/get-cookies`,{
+        //   method: "GET",
+        // })
+        // .then((res)=>{
+        //   return res.json();
+        // })
+        // .then((cookie)=>{
+        //   console.log(cookie);
+        //   sessionStorage.setItem("token", cookie.token);
+        //   // sessionStorage.setItem("userName", cookie.userName);
+        // })
+        // .catch((err)=>{
+        //   console.log(err);
+        // })
+      
+
+     
+        fetch(`${baseURL}/get-cookies`,{
+        method: "GET",
+      })
+      .then((res)=>{
+        return res.json();
+      })
+      .then((cookie)=>{
+        sessionStorage.setItem("token", cookie.token);
+        sessionStorage.setItem("userName", cookie.userName);
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+
+     
   }
 
   return (

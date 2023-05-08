@@ -1,0 +1,115 @@
+.dashContainer {
+    text-align: left;
+    width: 80%;
+    margin-left: 0vw;
+    padding: 0.5rem;
+}
+.heading{
+    margin-left: 5rem ;
+    font-size: 2rem;
+    font-weight: 600;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+    gap: 20px;
+}
+
+.card {
+    display: flex;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 20px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.cardDetails {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    gap: 5px;
+}
+
+.avt {
+    outline: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.avt>img {
+    width: 100px;
+}
+
+.btnSet {
+    gap: 30px;
+}
+
+.buttonA, .buttonB {
+    background-color: #ff388b;
+    color: aliceblue;
+    padding: 5px 20px;
+    border-radius: 10px;
+}
+
+.buttonA:hover {
+    background-color: #2bd355;
+
+}
+.buttonB:hover {
+    background-color: #f71b1b;
+
+}
+
+@media screen and (min-width:476px) and (max-width:800px) {
+    .grid {
+        grid-template-columns: repeat(1, 1fr);
+        padding: 15px;
+    }
+
+    .dashContainer {
+        font-size: medium;
+        /* margin-left: 8vw; */
+    }
+
+    .buttonA, .buttonB {
+        padding: 3px 8px;
+        border-radius: 10px;
+    }
+
+    .btnSet {
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width:475px) {
+    .grid {
+        grid-template-columns: repeat(1, 1fr);
+        padding: 10px;
+    }
+
+    .dashContainer {
+        font-size: small;
+        /* margin-left: 4vw; */
+
+    }
+
+
+    .card {
+        gap: 25px;
+    }
+
+    .buttonA, .buttonB {
+        padding: 3px 8px;
+        border-radius: 10px;
+    }
+
+    .btnSet {
+        gap: 10px;
+    }
+}

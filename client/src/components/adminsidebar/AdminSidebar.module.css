@@ -1,0 +1,5 @@
+.navlink:hover{
+    background-color: rgb(71, 202, 242);
+    border-radius: 30px;
+    color: aliceblue;
+}

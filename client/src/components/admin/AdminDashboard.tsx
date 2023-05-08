@@ -1,54 +1,90 @@
 import styles from "./AdminDashboard.module.css";
-import patientImg from "../../assets/patient.png";
+import {useState, useEffect} from "react";
 
-import {
-    Flex,
-    Heading,
-    useColorModeValue,
-} from '@chakra-ui/react';
 
-export default function AdminDashboard() {
+import Adminstat from "./Adminstat";
+import Renderadmin from "./Renderadmin";
+
+
+interface Myprops {
+    Home: boolean;
+    Admins: boolean;
+    Patients: boolean;
+    Doctors: boolean;
+    Appointments: boolean;
+  }
+
+export default function AdminDashboard(props: Myprops) {
+
+    
+    
+    // function patientDisplay(){
+    //     useEffect(()=>{
+    //         fetch(`${baseURL}/users/all-users`)
+    //         .then((res)=>{
+    //             return res.json()
+    //         })
+    //         .then((data)=>{
+    //             console.log(data)
+    //         })
+    //         .catch((err)=>{
+    //             console.log(err)
+    //         });
+    //     })
+    //     return(
+    //         <div>
+    //             <h1>Admin</h1>
+    //         </div>
+    //     )
+    // }
+    
+    // function doctorsDisplay(){
+    //     useEffect(()=>{
+    //         fetch(`${baseURL}/doctors/all-doctors`)
+    //         .then((res)=>{
+    //             return res.json()
+    //         })
+    //         .then((data)=>{
+    //             console.log(data)
+    //         })
+    //         .catch((err)=>{
+    //             console.log(err)
+    //         });
+    //     })
+    //     return(
+    //         <div>
+    //             <h1>Admin</h1>
+    //         </div>
+    //     )
+    // }
+    
+    // function appointmentsDisplay(){
+    //     useEffect(()=>{
+    //         fetch(`${baseURL}/appointments/all-appointments`)
+    //         .then((res)=>{
+    //             return res.json()
+    //         })
+    //         .then((data)=>{
+    //             console.log(data)
+    //         })
+    //         .catch((err)=>{
+    //             console.log(err)
+    //         });
+    //     })
+    //     return(
+    //         <div>
+    //             <h1>Admin</h1>
+    //         </div>
+    //     )
+    // }
+
+    const {Home, Admins, Patients, Doctors, Appointments} = props;
+    
+    const [data, setData] = useState([]);
     return (
         <div className={styles.dashContainer}>
-            <Heading color={useColorModeValue('orange', "orange")}
-                fontWeight={600}
-                fontSize={{ base: '2xl', sm: '4xl', md: '5xl' }}
-                lineHeight={'110%'} >All Appointments</Heading>
-            {/* this will be comming from the fectched data and return */}
-            <div className={styles.grid}>
-                <div className={styles.card} 
-                style={{
-                    backgroundColor: useColorModeValue('white', "grey"),
-                }}
-                >
-                    <div className={styles.cardDetails}>
-                        <h2
-                            style={{
-                                color: useColorModeValue('green', "white"),
-                            }}
-                        >Patient's Name : {"ujdfdsfb"}</h2>
-                        <h2 style={{
-                            color: useColorModeValue('green', "white"),
-                        }}>Doctor's Name : {"jhdfdsf"}</h2>
-                        <h2 style={{
-                            color: useColorModeValue('green', "white"),
-                        }}>Disease / checkup : {"jsdfdsfb"}</h2>
-                        <h2 style={{
-                            color: useColorModeValue('green', "white"),
-                        }}>Appointment Time and Date : {"jdsnfdsfb"}</h2>
-
-                        <Flex className={styles.btnSet} marginTop={'5px'} whiteSpace={'nowrap'}>
-                            <button className={styles.buttonA}>Accept</button>
-                            <button className={styles.buttonB}>Reject</button>
-                            <button className={styles.buttonA}>Status : {"Verified"}</button>
-                        </Flex>
-                    </div>
-                    <div className={styles.avt}>
-                        <img src={patientImg} alt="patient checkup" />
-                    </div>
-                </div>
-               
-            </div>
+            {Home ? <Adminstat/> : Admins ? <Renderadmin/> : Patients ? <p>patient</p> : Doctors ? <p>patient</p>: Appointments ? <p>patient</p>:  <p>Nothing</p>}
         </div>
     );
 }
+
