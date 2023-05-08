@@ -26,8 +26,7 @@ function RenderPatients() {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                // 'authorization' : `${sessionStorage.getItem('token')}`
-                'authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFrc2hheTEyM0BnbWFpbC5jb20iLCJpYXQiOjE2ODM1NjQ4MDAsImV4cCI6MTY4MzU5MDAwMH0.HZ9oxcGJw2sPojivO3zdvvwrJO__R7h16oPZsCb1v04'
+                'authorization' : `${sessionStorage.getItem('token')}`
             }
         })
             .then((res) => {
@@ -88,8 +87,7 @@ function RenderPatients() {
                                             method: "DELETE",
                                             headers: {
                                                 "Content-Type": "application/json",
-                                                // "authorization": `${sessionStorage.getItem("token")}`
-                                                "authorization": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFrc2hheTEyM0BnbWFpbC5jb20iLCJpYXQiOjE2ODM1MzgwOTYsImV4cCI6MTY4MzU2MzI5Nn0.7yTeKAFvUr9G9pJrx6uonAx9VbIWS0VdxE94pO58VQs`
+                                                "authorization": `${sessionStorage.getItem("token")}`
                                             }
                                         })
                                             .then(res => { return res.json() })
