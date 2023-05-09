@@ -27,6 +27,10 @@ export default function Login() {
   // const [email, setEmail] = useState("")
   // const [pass, setPass] = useState("")
   const [login, setLogin] = useState(false);
+
+  if(login){
+    sessionStorage.setItem("login","true");
+  }
   
 
   async function handleSignIn() {
