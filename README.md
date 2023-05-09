@@ -111,8 +111,13 @@ To run this project, you will need to add the following environment variables to
 
 
 ## System Architecture
-![image](https://i.imgur.com/oJW6QQe.jpeg)
+![SD image](https://i.imgur.com/oJW6QQe.jpeg)
 
+## ER Diagram
+![ER](https://i.imgur.com/1Xp2fEl.png)
+
+## Workflow
+![workflow](https://i.imgur.com/XAa3M2L.jpeg)
 
 ## Authors
 
