@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 // import { json } from "react-router-dom";
 
 export default function OurTeam() {
-  const frontendUrl = "http://localhost:5173";
+  const frontendUrl = "https://find-my-doctor.vercel.app";
   const [Cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 

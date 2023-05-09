@@ -21,7 +21,7 @@ import {
 } from "@chakra-ui/react";
 
 export default function Login() {
-  const frontendUrl = "http://localhost:5173";
+  const frontendUrl = "https://find-my-doctor.vercel.app";
   const baseURL = "https://jittery-shirt-tuna.cyclic.app";
   // const payload const [submitted, setSubmitted] = useState(false);
   // const [email, setEmail] = useState("")

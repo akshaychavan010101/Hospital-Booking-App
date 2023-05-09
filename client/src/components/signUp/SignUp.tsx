@@ -25,7 +25,7 @@ import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 
 export default function SignupCard() {
   // let baseUrl = "https://jittery-shirt-tuna.cyclic.app"
-  const frontendURl = "http://localhost:5173";
+  const frontendURl = "https://find-my-doctor.vercel.app";
 
   const [showPassword, setShowPassword] = useState(false);
 
