@@ -22,7 +22,7 @@ import { useState, useEffect } from "react";
 // import { ChevronDownIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 
 export default function Navbar() {
-  const frontendUrl = "http://localhost:5173";
+  const frontendUrl = "https://find-my-doctor.vercel.app";
   const { colorMode, toggleColorMode } = useColorMode();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("");

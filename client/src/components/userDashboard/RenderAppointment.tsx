@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Swal from "sweetalert2";
 
 const RenderAppointment = () => {
-    const frontendURl = "http://localhost:5173";
+    const frontendURl = "https://find-my-doctor.vercel.app";
     const baseUrl = `https://jittery-shirt-tuna.cyclic.app`;
     const [fetchData, setFetchData] = useState([]);
 
