@@ -11,7 +11,6 @@ import {
   Button,
   Icon,
   IconProps,
-  useColorModeValue,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
@@ -33,28 +32,29 @@ export default function HomeMiddleComp() {
   }
 
   return (
-    <Container maxW={"5xl"}>
+    <Container maxW={"5xl"}>  
       <Stack
-        position={"relative"}
         textAlign={"center"}
         align={"center"}
-        spacing={{ base: 8, md: 10 }}
-        py={{ base: 20, md: 28 }}
+        spacing={{ base: 6, md: 10 }}
+        py={{ base: 19, md: 27 }}
       >
-        <Heading
-          className={styles.typing}
-          fontWeight={600}
-          fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
-          lineHeight={"110%"}
-          _before={{
-            backgroundColor: useColorModeValue("white", "#1a202c"),
-          }}
-        >
-          Appointment Booking{" "}
-          <Text as={"span"} color={"orange.400"}>
-            made easy
-          </Text>
-        </Heading>
+        <div className={styles.typingAnimation}>
+          <Heading
+            className={styles.typing}
+            fontWeight={600}
+            fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
+            lineHeight={"110%"}
+          // _before={{
+          //   backgroundColor: useColorModeValue("white", "#1a202c"),
+          // }}
+          >
+            Appointment Booking{" "}
+            <Text as={"span"} color={"orange.400"}>
+              made easy
+            </Text>
+          </Heading>
+        </div>
         <Text color={"gray.500"} maxW={"3xl"}>
           We are Happy to server you. Here you can Book your Appointments with
           your respective Doctor. FindMyDoc make this process very easy. Just
