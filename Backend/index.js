@@ -57,7 +57,6 @@ app.get(
       // Redirect user to the home page after authentication
       res.redirect("https://jittery-shirt-tuna.cyclic.app/user/google-verify");
     } catch (error) {
-      console.log(error);
       res.send(error.message);
     }
   }
@@ -131,7 +130,7 @@ app.get("/auth/github", async (req, res) => {
     });
 
     // redirect the user to the frontend
-    res.redirect("https://findmydoctor.onrender.com");
+    res.redirect(`https://findmydoctor.onrender.com?token=${tosendtoken}&userName=${name}`);
   } catch (error) {
     res.status(500).json({ msg: "Something went wrong" });
   }
@@ -142,7 +141,6 @@ app.get("verfy", (req, res) => {
 });
 
 app.get("/get-cookies", (req, res) => {
-  console.log(req.cookies);
   res.send(req.cookies);
 });
 
