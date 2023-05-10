@@ -41,14 +41,9 @@ app.use("/doctors", DoctorRouter);
 
 
 app.get("/", (req, res) => {
-  console.log("test");
   app.use(express.static(path.join(__dirname, "../", "client", "dist")));
   res.sendFile(path.resolve(__dirname, "../", "client", "dist", "index.html"));
 });
-
-// app.get("/", (req, res) => {
-//   res.send("Welcome to the Hospital Booking App");
-// });
 
 // ------------------ Google auth -----------------------
 // Set up Google authentication callback route
@@ -136,7 +131,7 @@ app.get("/auth/github", async (req, res) => {
     });
 
     // redirect the user to the frontend
-    res.redirect("http://localhost:5173/");
+    res.redirect("https://findmydoctor.onrender.com");
   } catch (error) {
     res.status(500).json({ msg: "Something went wrong" });
   }
