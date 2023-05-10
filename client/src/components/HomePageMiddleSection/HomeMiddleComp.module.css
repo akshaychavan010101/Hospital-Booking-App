@@ -9,41 +9,69 @@ body{
     background-color: var(--bodyColor);
 } */
 
-.typing {
+/* -------------Typing animation------------- */
+
+.typingAnimation {
+    position: relative;
     display: inline-block;
-    white-space: nowrap;
-    overflow-y: hidden;
-    margin-right: 0.5rem;
+    text-align: left;
 }
 
 .typing::before {
     content: '';
-    border-left: 2px solid orange;
+    position: absolute;
+    border-right: 2px solid orange;
     left: 0;
     top: 10;
-    height: 4%;
+    overflow: hidden;
+    height: 100%;
     width: 100%;
-    position: absolute;
-    background-color: white;
-    animation: animate 4s steps(12) infinite;
+    animation: typing 5s steps(20) infinite;
 }
 
-@keyframes animate {
+@keyframes typing {
 
-    30%,
-    60% {
-        left: 100%;
+    0% {
+        width: 0;
+    }
+
+    50% {
+        width: 105%;
     }
 
     100% {
-        left: 0%;
+        width: 0%;
     }
 }
 
-.doctorImage{
+.typing {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-right: 0.5rem;
+    width: 0;
+    animation: typing-text 5s steps(20) infinite;
+}
+
+@keyframes typing-text {
+    0% {
+        width: 0;
+    }
+
+    50% {
+        width: 105%;
+    }
+
+    100% {
+        width: 0;
+    }
+}
+
+/* --------------------------------------- */
+.doctorImage {
     width: 40%;
 }
 
-.doctorImage2{
+.doctorImage2 {
     width: 100%;
 }
