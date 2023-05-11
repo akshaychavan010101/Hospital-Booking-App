@@ -10,12 +10,12 @@ import ServicePage from '../pages/services/ServicePage'
 import AppointmentPage from '../pages/Appointment/AppointmentPage'
 import DotorDetailsPage from '../pages/DoctorDetails/DotorDetailsPage'
 import Notification from '../pages/notifications/Notification'
-import { Route, Routes } from 'react-router-dom'
+import {Route , Routes} from 'react-router-dom'
 
-function AllRoute() {
+const AllRoute:React.FC = () =>{
   return (
     <Routes>
-      <Route path='/' element={<HomePage />} />
+     <Route  path='/' element={<HomePage />} />
       <Route path="/user/login" element={<LoginPage/>} />
       <Route path="/user/signUp" element={<SignupPage/>} />
       <Route path="/user/dashboard" element={<UserDashboardPage/>} />
