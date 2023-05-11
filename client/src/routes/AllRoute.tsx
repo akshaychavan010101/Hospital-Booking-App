@@ -10,11 +10,11 @@ import ServicePage from '../pages/services/ServicePage'
 import AppointmentPage from '../pages/Appointment/AppointmentPage'
 import DotorDetailsPage from '../pages/DoctorDetails/DotorDetailsPage'
 import Notification from '../pages/notifications/Notification'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 
 function AllRoute() {
   return (
-    <BrowserRouter>
+    <Routes>
       <Route path='/' element={<HomePage />} />
       <Route path="/user/login" element={<LoginPage/>} />
       <Route path="/user/signUp" element={<SignupPage/>} />
@@ -26,7 +26,7 @@ function AllRoute() {
       <Route path="/doctordetails" element={<DotorDetailsPage/>} />
       <Route path="/notifications" element={<Notification/>} />
       <Route path='*' element={<NotFoundPage/>}/>
-    </BrowserRouter>
+    </Routes>
   )
 }
 
