@@ -10,7 +10,7 @@ import ServicePage from '../pages/services/ServicePage'
 import AppointmentPage from '../pages/Appointment/AppointmentPage'
 import DotorDetailsPage from '../pages/DoctorDetails/DotorDetailsPage'
 import Notification from '../pages/notifications/Notification'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 
 function AllRoute() {
   return (
