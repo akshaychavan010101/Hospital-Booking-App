@@ -46,7 +46,7 @@ const RenderAppointment = () => {
        
     
         // get the parsed token from session storage write syntax in typescript
-        let token = sessionStorage.getItem("token") || "";
+        const token = sessionStorage.getItem("token") || "";
 
         fetch(`${baseUrl}/appointments/book-appointment`,{
             method: "POST",

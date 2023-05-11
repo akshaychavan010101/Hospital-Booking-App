@@ -50,7 +50,7 @@ export default function Login() {
       const payload = { email, password };
      
 
-      let fData = await fetch(`${baseURL}/user/login`, {
+      const fData = await fetch(`${baseURL}/user/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -97,12 +97,12 @@ export default function Login() {
   return (
     <Flex
       className={styles.loginContainer}
-      minH={"120vh"}
+      minH={"105vh"}
       align={"center"}
       justify={"center"}
       bg={useColorModeValue("gray.50", "gray.800")}
     >
-      <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+      <Stack spacing={8} mx={"auto"} maxW={"lg"} py={4} px={6}>
         <Stack align={"center"}>
           <Heading fontSize={"4xl"}>Sign in to your account</Heading>
           {/* <Text fontSize={'lg'} color={'gray.600'}>
@@ -146,8 +146,8 @@ export default function Login() {
                 Sign in
               </Button>
 
-              <Center p={8}>
-                <Stack spacing={4} align={"center"} maxW={"md"} w={"full"}>
+              <Center >
+                <Stack spacing={2} align={"center"} maxW={"md"} w={"full"}>
                   {/* Facebook */}
                   {/* <Button w={'full'} colorScheme={'facebook'} leftIcon={<FaFacebook />}>
           <Center>

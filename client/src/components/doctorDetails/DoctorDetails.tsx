@@ -15,14 +15,12 @@ import {
   List,
   ListItem,
 } from '@chakra-ui/react';
-//   import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { MdLocalShipping } from 'react-icons/md';
 import { Link } from "react-router-dom";
 
 
 
 export default function DoctorDetails() {
-  // const [detail, setDetail] = useState("");
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
   const [depart, setDepart] = useState("");
@@ -33,9 +31,9 @@ export default function DoctorDetails() {
   const [desc, setdesc] = useState(Object);
 
 
-  const baseUrl = "https://jittery-shirt-tuna.cyclic.app/doctors/single-doctor";
+  const baseURL = "https://jittery-shirt-tuna.cyclic.app";
   useEffect(() => {
-    fetch(`${baseUrl}/${sessionStorage.getItem("Doctor")}`)
+    fetch(`${baseURL}/doctors/single-doctor/${sessionStorage.getItem("Doctor")}`)
       .then(res => { return res.json() })
       .then(data => {
         setAvatar(data.doctor.avatar);
@@ -46,7 +44,6 @@ export default function DoctorDetails() {
         setRating(data.doctor.rating)
         setFees(data.doctor.fee)
         setdesc(data.doctor.descdoctor)
-        // console.log(data.doctor.descdoctor)
       })
   }, [])
 
@@ -60,11 +57,10 @@ export default function DoctorDetails() {
           <Image
             rounded={'md'}
             width="100"
-            alt={'product image'}
+            alt={name}
             src={avatar}
             fit={'cover'}
             align={'center'}
-            // w={'100%'}
             h={{ base: '100%', sm: '400px', lg: '500px' }}
           />
         </Flex>
@@ -172,7 +168,9 @@ export default function DoctorDetails() {
             _hover={{
               transform: 'translateY(2px)',
               boxShadow: 'lg',
-            }}>
+            }}
+            display={sessionStorage.getItem("login") ? "block" : "none"}
+            >
             <Link to="/appointment">Book Appointment</Link>
           </Button>
 

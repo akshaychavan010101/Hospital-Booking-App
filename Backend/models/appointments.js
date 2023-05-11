@@ -30,11 +30,19 @@ module.exports = (sequelize, DataTypes) => {
       Enumerator: ["pending", "approved", "rejected", "cancelled"],
     },
 
+    phone: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    needAmbualance: {
+      type: DataTypes.STRING,
+      defaultValue: "No",
+    },
+
     isNotified: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
-    
   });
 
   return appointments;

@@ -22,7 +22,6 @@ import { useState, useEffect } from "react";
 // import { ChevronDownIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 
 export default function Navbar() {
-  const frontendUrl = "https://findmydoctor.onrender.com";
   const { colorMode, toggleColorMode } = useColorMode();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("");
@@ -43,7 +42,7 @@ export default function Navbar() {
     sessionStorage.clear();
     setIsLoggedIn(false);
     window.location.reload();
-    window.location.href = `${frontendUrl}`;
+    window.location.href = `/`;
   }
 
   return (
@@ -164,14 +163,14 @@ export default function Navbar() {
                     </Box>
                   ) : (
                     <Box id="userName" fontWeight={"bold"} textAlign={"center"}>
-                      User
+                     Please Sign In
                     </Box>
                   )}
 
                   {/* <Box textAlign={"center"}>john.doe@example.com</Box> */}
                   <br />
-                  <MenuItem>Change Profile Photo</MenuItem>
-                  <MenuItem>
+                  <MenuItem display={isLoggedIn ? "block" : "none"}>Change Profile Photo</MenuItem>
+                  <MenuItem display={isLoggedIn? "block" : "none"}>
                     <Link to="/user/dashboard">Dashboard</Link>
                   </MenuItem>
                   <MenuItem onClick={Logout} style={{display : isLoggedIn ? "block" : "none"}}>Logout</MenuItem>

@@ -67,6 +67,7 @@ export default function HomeMiddleComp() {
             colorScheme={"orange"}
             bg={"orange.400"}
             _hover={{ bg: "orange.500" }}
+            display={sessionStorage.getItem("token") ? "none" : "block"}
           >
             <Link to="/user/login">Get started</Link>
           </Button>

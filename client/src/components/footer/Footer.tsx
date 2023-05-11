@@ -99,7 +99,7 @@ export default function Footer() {
             </Box>
           </Stack>
           <div 
-          style={{display:"flex",gap:"5px"}}
+          style={{display:"flex" , flexWrap:"wrap" , justifyContent:"space-around" , alignItems:"center" , width:"100%" , marginTop:"2px" }}
           >
             <h3 style={{fontWeight:600}}>Attribution:-</h3>
             <a target="_blank" href="https://chakra-templates.dev/">Chakra</a>

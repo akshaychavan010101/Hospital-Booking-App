@@ -36,7 +36,7 @@ function Renderadmin() {
       .finally(() => {
         setLoading(false);
       });
-  });
+  } , []);
   return (
     <div className={styles.dashContainer}>
       <Heading
