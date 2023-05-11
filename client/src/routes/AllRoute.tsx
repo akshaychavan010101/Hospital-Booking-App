@@ -1,5 +1,4 @@
 // import React from 'react'
-import { Route, Routes } from 'react-router'
 import HomePage from '../pages/home/HomePage'
 import LoginPage from '../pages/login/LoginPage'
 import SignupPage from '../pages/signup/SignupPage'
@@ -11,10 +10,11 @@ import ServicePage from '../pages/services/ServicePage'
 import AppointmentPage from '../pages/Appointment/AppointmentPage'
 import DotorDetailsPage from '../pages/DoctorDetails/DotorDetailsPage'
 import Notification from '../pages/notifications/Notification'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 function AllRoute() {
   return (
-    <Routes>
+    <BrowserRouter>
       <Route path='/' element={<HomePage />} />
       <Route path="/user/login" element={<LoginPage/>} />
       <Route path="/user/signUp" element={<SignupPage/>} />
@@ -26,7 +26,7 @@ function AllRoute() {
       <Route path="/doctordetails" element={<DotorDetailsPage/>} />
       <Route path="/notifications" element={<Notification/>} />
       <Route path='*' element={<NotFoundPage/>}/>
-    </Routes>
+    </BrowserRouter>
   )
 }
 
