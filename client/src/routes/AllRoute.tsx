@@ -12,7 +12,7 @@ import DotorDetailsPage from '../pages/DoctorDetails/DotorDetailsPage'
 import Notification from '../pages/notifications/Notification'
 import {Route , Routes} from 'react-router-dom'
 
-const AllRoute:React.FC = () =>{
+const AllRoute = () =>{
   return (
     <Routes>
      <Route  path='/' element={<HomePage />} />
