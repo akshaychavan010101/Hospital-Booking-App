@@ -33,6 +33,7 @@ function RenderPatients() {
                 return res.json()
             })
             .then((data) => {
+                
                 setAdd(false)
                 setLoading(false)
                 setPatients(data.users)

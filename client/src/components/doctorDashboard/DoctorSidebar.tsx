@@ -1,5 +1,5 @@
 import logo from "../../assets/logo.png"
-import styles from "./Sidebar.module.css"
+import styles from "./DoctorSidebar.module.css"
 import {
     IconButton,
     Box,
@@ -20,18 +20,27 @@ import {
 // import { IconType } from 'react-icons';
 // import { ReactText } from 'react';
 import { Link } from "react-router-dom";
+interface Myprops {
+    setProfile: any,
+    setPatients: any,
+    setAppointments: any
+}
 
-
-export default function Sidebar(props: any) {
+export default function DoctorSidebar(props: Myprops) {
 
 
     const { isOpen, onOpen, onClose } = useDisclosure();
+
+
     return (
         <Box bg={useColorModeValue('gray.100', 'gray.900')} >
             <SidebarContent
                 onClose={() => onClose}
+
                 display={{ base: 'none', md: 'block' }}
-                state={props}
+
+                states={props}
+
             />
             <Drawer
                 autoFocus={false}
@@ -43,7 +52,7 @@ export default function Sidebar(props: any) {
 
                 size="full">
                 <DrawerContent>
-                    <SidebarContent onClose={onClose} state={props} />
+                    <SidebarContent onClose={onClose} states={props} />
                 </DrawerContent>
             </Drawer>
             {/* mobilenav */}
@@ -57,12 +66,12 @@ export default function Sidebar(props: any) {
 
 interface SidebarProps extends BoxProps {
     onClose: () => void;
-    state: any;
+    states: any
 }
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
 
-    const { setProfile, setAppointments } = rest.state;
+    const { setProfile, setAppointments, setPatients } = rest.states;
 
     return (
         <Box
@@ -81,48 +90,28 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
                 </Text>
                 <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
             </Flex>
-            <h1 style={{ fontSize: "large", padding: "10px 0px 15px 40px" }} className={styles.navlink} onClick={() => {setAppointments(false); setProfile(true) }}>My Profile</h1>
-            <h1 style={{ fontSize: "large", padding: "10px 0px 15px 40px" }} className={styles.navlink} onClick={() => {setProfile(false); setAppointments(true) }}>My Appointments</h1>
-            <h1 style={{ fontSize: "large", padding: "10px 0px 15px 40px" }} className={styles.navlink}><Link to={"/notifications"}>Notifications</Link></h1>
+            <h1 style={{ fontSize: "large", padding: "10px 0px 15px 40px" }} className={styles.navlink} onClick={() => {
+                setPatients(false);
+                setProfile(true);
+                setAppointments(false);
 
+            }}>Profile</h1>
+            <h1 style={{ fontSize: "large", padding: "10px 0px 15px 40px" }} className={styles.navlink} onClick={() => {
+                setProfile(false);
+                setPatients(true);
+                setAppointments(false);
+            }}>My Patients</h1>
+            <h1 style={{ fontSize: "large", padding: "10px 0px 15px 40px" }} className={styles.navlink} onClick={() => {
+                setPatients(false);
+                setProfile(false);
+                setAppointments(true);
+            }}>My Appointments</h1>
+            <h1 style={{ fontSize: "large", padding: "10px 0px 15px 40px" }} className={styles.navlink}>Notifications</h1>
         </Box>
     );
 };
 
-// interface NavItemProps extends FlexProps {
-//     icon: IconType;
-//     children: ReactText;
-// }
-// const NavItem = ({ icon, children, ...rest }: NavItemProps) => {
-//     return (
-//         <Link to={"#"} style={{ textDecoration: 'none' }}>
-//             <Flex
-//                 align="center"
-//                 p="4"
-//                 mx="4"
-//                 borderRadius="lg"
-//                 role="group"
-//                 cursor="pointer"
-//                 _hover={{
-//                     bg: 'cyan.400',
-//                     color: 'white',
-//                 }}
-//                 {...rest}>
-//                 {icon && (
-//                     <Icon
-//                         mr="4"
-//                         fontSize="16"
-//                         _groupHover={{
-//                             color: 'white',
-//                         }}
-//                         as={icon}
-//                     />
-//                 )}
-//                 {children}
-//             </Flex>
-//         </Link>
-//     );
-// };
+
 
 interface MobileProps extends FlexProps {
     onOpen: () => void;
