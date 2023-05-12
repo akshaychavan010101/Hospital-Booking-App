@@ -17,9 +17,6 @@ function UserDashboardPage() {
     appointments: appointments
   }
 
-
- 
-
   const props = {
     setProfile,
     setAppointments

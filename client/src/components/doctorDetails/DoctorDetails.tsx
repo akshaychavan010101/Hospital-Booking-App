@@ -169,7 +169,7 @@ export default function DoctorDetails() {
               transform: 'translateY(2px)',
               boxShadow: 'lg',
             }}
-            display={sessionStorage.getItem("login") ? "block" : "none"}
+            display={sessionStorage.getItem("login") && sessionStorage.getItem("role") != "doctor" ? "block" : "none"}
             >
             <Link to="/appointment">Book Appointment</Link>
           </Button>
