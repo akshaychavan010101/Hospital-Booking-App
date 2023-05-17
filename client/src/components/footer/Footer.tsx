@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Image } from "@chakra-ui/react";
-import styles from "./footer.module.css"
+import styles from "./footer.module.css";
 
 import {
   Box,
@@ -93,21 +93,67 @@ export default function Footer() {
             <ListHeader>Install App</ListHeader>
             {/* <AppStoreBadge/>
             <PlayStoreBadge /> */}
-            <Box className={styles.storeBox} boxSize="sm" h={40} w={400} mt={-10}>
-              <Image className={styles.apple} mt={-4} src="../src/assets/apple_thumbnail.png" alt="Dan Abramov" />
-              <Image className={styles.playstore} src="../src/assets/playstore_thumbnail.png" alt="Dan Abramov" />
+            <Box
+              className={styles.storeBox}
+              boxSize="sm"
+              h={40}
+              w={400}
+              mt={-10}
+            >
+              <Image
+                className={styles.apple}
+                src="https://o.remove.bg/downloads/17266b6f-8a90-461d-b8e8-f1a4e9735eb9/apple_thumbnail-removebg-preview.png"
+                alt="Dan Abramov"
+              />
+
+              <Image
+                className={styles.playstore}
+                src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+                alt="Dan Abramov"
+              />
             </Box>
           </Stack>
-          <div 
-          style={{display:"flex" , flexWrap:"wrap" , justifyContent:"space-around" , alignItems:"center" , width:"100%" , marginTop:"2px" }}
+          <div
+            style={{
+              display: "flex",
+              gap: "5px",
+              flexWrap: "wrap",
+              justifyContent: "space-around",
+              alignItems: "center",
+            }}
           >
-            <h3 style={{fontWeight:600}}>Attribution:-</h3>
-            <a target="_blank" href="https://chakra-templates.dev/">Chakra</a>
-            <a target="_blank" href="https://www.flaticon.com/free-icons/patient" title="patient icons">Flaticon</a>
-            <a target="_blank" href="https://getcssscan.com/css-box-shadow-examples">Getcssscan</a>
-            <a target="_blank" href="https://www.pexels.com/">Pexels</a>
-            <a target="_blank" href="https://www.freepik.com/vectors/hospital-animation">Freepic</a>
-            <a target="_blank" href="https://pixabay.com/vectors/doctor-doctor-s-consultation-6810750/">Pixbay</a>
+            <h3 style={{ fontWeight: 600 }}>Attribution:-</h3>
+            <a target="_blank" href="https://chakra-templates.dev/">
+              Chakra
+            </a>
+            <a
+              target="_blank"
+              href="https://www.flaticon.com/free-icons/patient"
+              title="patient icons"
+            >
+              Flaticon
+            </a>
+            <a
+              target="_blank"
+              href="https://getcssscan.com/css-box-shadow-examples"
+            >
+              Getcssscan
+            </a>
+            <a target="_blank" href="https://www.pexels.com/">
+              Pexels
+            </a>
+            <a
+              target="_blank"
+              href="https://www.freepik.com/vectors/hospital-animation"
+            >
+              Freepic
+            </a>
+            <a
+              target="_blank"
+              href="https://pixabay.com/vectors/doctor-doctor-s-consultation-6810750/"
+            >
+              Pixbay
+            </a>
           </div>
         </SimpleGrid>
       </Container>

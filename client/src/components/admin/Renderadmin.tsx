@@ -10,33 +10,32 @@ function Renderadmin() {
   const [error, setError] = useState(false);
 
   const baseURL = "https://jittery-shirt-tuna.cyclic.app";
+
   useEffect(() => {
     setLoading;
     fetch(`${baseURL}/user/all-admins`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        'authorization' : `${sessionStorage.getItem('token')}`
+        authorization: `${sessionStorage.getItem("token")}`,
       },
     })
       .then((res) => {
         return res.json();
       })
       .then((data) => {
-        console.log(data.admins);
         setLoading(false);
         setAdmins(data.admins);
         setError(false);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
         setLoading(false);
         setError(true);
       })
       .finally(() => {
         setLoading(false);
       });
-  } , []);
+  });
   return (
     <div className={styles.dashContainer}>
       <Heading

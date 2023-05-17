@@ -23,9 +23,7 @@ FindMyDoc is an online appointment booking system designed for healthcare profes
 
 **Server:** Node, Express
 
-**Database:** 
-SQL : freesqldatabase.com ,
-MongoDB : MongoDB Atlas
+**Database:** SQL, MongoDB
 
 
 ## Run Locally
@@ -101,9 +99,6 @@ To run this project, you will need to add the following environment variables to
 
 
 ## Demo
-
-### Live at 
-`https://findmydoctorapp.netlify.app`
 
 ### Backend URL 
 `https://jittery-shirt-tuna.cyclic.app`

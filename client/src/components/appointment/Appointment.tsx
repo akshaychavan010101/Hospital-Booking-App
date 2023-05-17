@@ -9,13 +9,16 @@ import {
   Input,
   Select,
   Stack,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import Swal from "sweetalert2";
 
 const Appointment = () => {
-  const baseURL = `https://jittery-shirt-tuna.cyclic.app`;
+  const baseURL = "https://jittery-shirt-tuna.cyclic.app";
+
   const [fetchData, setFetchData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetch(`${baseURL}/doctors/all-doctors`)
@@ -28,15 +31,18 @@ const Appointment = () => {
       .catch((err) => {
         alert(err);
       });
-  } , []);
+  }, []);
 
   const bookSlot = () => {
     const date = document.getElementById("date") as HTMLInputElement;
     const doctor = document.getElementById("doctor") as HTMLInputElement;
     const time = document.getElementById("Time") as HTMLInputElement;
 
-    if (sessionStorage.getItem("login") == null) {
-      Swal.fire("Please login to book an appointment");
+    if (
+      sessionStorage.getItem("login") == null ||
+      sessionStorage.getItem("token") == null
+    ) {
+      Swal.fire("Login to book appointment");
       return;
     }
 
@@ -59,9 +65,9 @@ const Appointment = () => {
       doctorId: doctor.value,
     };
 
-    // get the parsed token from session storage write syntax in typescript
-    const token = sessionStorage.getItem("token") || "";
+    let token = sessionStorage.getItem("token") || "";
 
+    setLoading(true);
     fetch(`${baseURL}/appointments/book-appointment`, {
       method: "POST",
       headers: {
@@ -74,13 +80,20 @@ const Appointment = () => {
         return res.json();
       })
       .then((data) => {
-        Swal.fire(data.msg).then(() => {
-          if (data.msg == "Appointment booked successfully") {
-            window.location.href = `/user/dashboard`;
-          }
-        });
+        if (data.msg == "Appointment booked successfully") {
+          Swal.fire("Appointment booked successfully").then(() => {
+            setLoading(false);
+            setTimeout(() => {
+              window.location.href = `/user/dashboard`;
+            }, 500);
+          });
+        } else {
+          setLoading(false);
+          Swal.fire(data.msg);
+        }
       })
       .catch((err) => {
+        setLoading(false);
         Swal.fire(err.msg);
       });
   };
@@ -89,7 +102,7 @@ const Appointment = () => {
     <Box
       as="form"
       p={6}
-      bg="white"
+      bg={useColorModeValue("white.50", "gray.800")}
       borderRadius="md"
       shadow="md"
       marginTop={"10vh"}
@@ -109,8 +122,8 @@ const Appointment = () => {
           <Input
             type="date"
             name="Appointment Date"
-            bg="gray.50"
-            border="none"
+            bg={useColorModeValue("gray.50", "gray.800")}
+            border="1px solid silver"
             borderRadius="md"
           />
         </FormControl>
@@ -119,8 +132,8 @@ const Appointment = () => {
           <FormLabel fontWeight="bold">Doctor's Name</FormLabel>
           <Select
             placeholder="Select Doctor"
-            bg="gray.50"
-            border="none"
+            bg={useColorModeValue("gray.50", "gray.800")}
+            border="1px solid silver"
             borderRadius="md"
             id="doctor"
           >
@@ -137,8 +150,8 @@ const Appointment = () => {
           <FormLabel fontWeight="bold">Time</FormLabel>
           <Select
             placeholder="Select Day"
-            bg="gray.50"
-            border="none"
+            bg={useColorModeValue("white.50", "gray.800")}
+            border="1px solid silver"
             borderRadius="md"
           >
             <option value="10:00 AM - 11:00 AM">10:00 AM - 11:00 AM</option>
@@ -153,8 +166,8 @@ const Appointment = () => {
           <Input
             type="tel"
             name="phone"
-            bg="gray.50"
-            border="none"
+            bg={useColorModeValue("white.50", "gray.800")}
+            border="1px solid silver"
             borderRadius="md"
           />
         </FormControl>
@@ -162,8 +175,8 @@ const Appointment = () => {
           <FormLabel fontWeight="bold">Need Ambulance?</FormLabel>
           <Select
             placeholder="Need Ambulance?"
-            bg="gray.50"
-            border="none"
+            bg={useColorModeValue("gray.10", "gray.800")}
+            border="1px solid silver"
             borderRadius="md"
           >
             <option value="0">No</option>
@@ -182,8 +195,11 @@ const Appointment = () => {
               bookSlot();
             }}
           >
-            Book Now
+            {sessionStorage.getItem("login")
+              ? "Book Appointment"
+              : "Login to Book Appointment"}
           </Button>
+          {loading ? "Loading..." : ""}
         </motion.div>
       </Stack>
     </Box>

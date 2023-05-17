@@ -14,10 +14,11 @@ import { Link } from "react-router-dom";
 // import { json } from "react-router-dom";
 
 export default function OurTeam() {
+  const baseURL = "https://jittery-shirt-tuna.cyclic.app";
+
   const [Cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const baseURL = "https://jittery-shirt-tuna.cyclic.app";
   // do this fetching in the parent component and pass the data as props to this component
   useEffect(() => {
     setIsLoading(true);
@@ -45,8 +46,7 @@ export default function OurTeam() {
         {isLoading ? <h1 style={{ fontSize: "2rem" }}>Loading...</h1> : null}
         {Cards?.map((items) => {
           return (
-            <Stack
-              key={items["id"]}
+            <Stack key={items["id"]}
               borderWidth="1px"
               borderRadius="lg"
               w={{ sm: "100%", md: "540px" }}
@@ -56,21 +56,15 @@ export default function OurTeam() {
               boxShadow={"2xl"}
               padding={4}
             >
-              <Flex
-                flex={1}
-                bg="blue.200"
-                onClick={() => {
-                  window.location.href = `/doctordetails`;
-                }}
-              >
-                <Image
-                  objectFit="fill"
-                  boxSize="100%"
-                  src={items["avatar"]}
-                  onClick={() => {
-                    sessionStorage.setItem("Doctor", items["id"]);
-                  }}
-                />
+              <Flex flex={1} bg="blue.200" onClick={() => {
+                window.location.href = `/doctordetails`
+              }}>
+                <Image objectFit="fill" boxSize="100%" src={items["avatar"]} onClick={() => {
+                  sessionStorage.setItem(
+                    "Doctor",
+                    (items["id"])
+                  );
+                }} />
               </Flex>
               <Stack
                 flex={1}
@@ -156,7 +150,7 @@ export default function OurTeam() {
                     _focus={{
                       bg: "gray.200",
                     }}
-                    display={sessionStorage.getItem("token") ? "block" : "none"}
+
                   >
                     <Link to="/appointment">Book Appointment</Link>
                   </Button>
@@ -176,7 +170,10 @@ export default function OurTeam() {
                       bg: "blue.500",
                     }}
                     onClick={() => {
-                      sessionStorage.setItem("Doctor", items["id"]);
+                      sessionStorage.setItem(
+                        "Doctor",
+                        (items["id"])
+                      );
                     }}
                   >
                     <Link to={"/doctordetails"}>Follow</Link>

@@ -1,26 +1,27 @@
 const express = require("express");
 const { authentication } = require("../middlewares/authentication");
 const { auth } = require("../middlewares/auth");
-
 const DoctorRouter = express.Router();
 
-const db = require("../models");
+// const db = require("../models");
+const { Doctors } = require("../models/doctors");
+const { Descdoctors } = require("../models/descdoctors");
 
 DoctorRouter.get("/single-doctor/:id", async (req, res) => {
   try {
     // create association between doctors and descdoctors table(imp)
-    db.doctors.hasOne(db.descdoctors, {
+    Doctors.hasOne(Descdoctors, {
       foreignKey: "doctor_id",
     });
 
     // join the doctors and descdoctors table and  get the complete data of the doctor
-    const doctor = await db.doctors.findOne({
+    const doctor = await Doctors.findOne({
       where: {
         id: req.params.id,
       },
       include: [
         {
-          model: db.descdoctors,
+          model: Descdoctors,
           where: {
             doctor_id: req.params.id,
           },
@@ -32,7 +33,6 @@ DoctorRouter.get("/single-doctor/:id", async (req, res) => {
       doctor,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({ msg: "Something went wrong" });
   }
 });
@@ -61,7 +61,7 @@ DoctorRouter.post(
         mobile,
       } = req.body;
 
-      const newdoctor = await db.doctors.create({
+      const newdoctor = await Doctors.create({
         name,
         avatar,
         speciality,
@@ -71,7 +71,7 @@ DoctorRouter.post(
         fee,
       });
 
-      const doctor = await db.doctors.findOne({
+      const doctor = await Doctors.findOne({
         where: {
           name,
           avatar,
@@ -87,7 +87,7 @@ DoctorRouter.post(
         return res.status(400).json({ msg: "Could not add Doctor" });
       }
 
-      await db.descdoctors.create({
+      await Descdoctors.create({
         education,
         Professional,
         Certifications,
@@ -110,12 +110,11 @@ DoctorRouter.post(
 
 DoctorRouter.get("/all-doctors", async (req, res) => {
   try {
-    const doctors = await db.doctors.findAll({});
+    const doctors = await Doctors.findAll({});
     res.status(200).json({
       doctors,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({ msg: "Something went wrong" });
   }
 });
@@ -126,13 +125,13 @@ DoctorRouter.delete(
   auth(["admin"]),
   async (req, res) => {
     try {
-      await db.doctors.destroy({
+      await Doctors.destroy({
         where: {
           id: req.params.id,
         },
       });
 
-      await db.descdoctors.destroy({
+      await Descdoctors.destroy({
         where: {
           doctor_id: req.params.id,
         },
@@ -142,19 +141,18 @@ DoctorRouter.delete(
         msg: "Doctor deleted successfully",
       });
     } catch (error) {
-      console.log(error);
       res.status(500).json({ msg: "Something went wrong" });
     }
   }
 );
 
-DoctorRouter.put(
+DoctorRouter.patch(
   "/update-doctor/:id",
   authentication,
   auth(["admin"]),
   async (req, res) => {
     try {
-      await db.doctors.update(req.body, {
+      await Doctors.update(req.body, {
         where: {
           id: req.params.id,
         },
@@ -164,19 +162,18 @@ DoctorRouter.put(
         msg: "Doctor updated successfully",
       });
     } catch (error) {
-      console.log(error);
       res.status(500).json({ msg: "Something went wrong" });
     }
   }
 );
 
-DoctorRouter.put(
+DoctorRouter.patch(
   "/update-descdoctor/:id",
   authentication,
   auth(["admin"]),
   async (req, res) => {
     try {
-      await db.descdoctors.update(req.body, {
+      await Descdoctors.update(req.body, {
         where: {
           doctor_id: req.params.id,
         },
@@ -186,14 +183,9 @@ DoctorRouter.put(
         msg: "Doctor description updated successfully",
       });
     } catch (error) {
-      console.log(error);
       res.status(500).json({ msg: "Something went wrong" });
     }
   }
 );
-
-
-// doctors own profile routes here
-
 
 module.exports = { DoctorRouter };

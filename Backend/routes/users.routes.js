@@ -4,11 +4,10 @@ const cookieParser = require("cookie-parser");
 const jwt = require("jsonwebtoken");
 const { auth } = require("../middlewares/auth");
 require("dotenv").config();
-const db = require("../models/index");
+// const db = require("../models/index");
+const { User } = require("../models/user");
 const { authentication } = require("../middlewares/authentication");
 const UserRouter = express.Router();
-// const sgMail = require("@sendgrid/mail");
-// sgMail.setApiKey(process.env.SG_API_KEY);
 
 // new code for google auth
 const passport = require("../oauths/google.oauth");
@@ -25,9 +24,9 @@ UserRouter.get(
 );
 
 // Set up routes (after the verification is done by hitting this route user will be redirected to the home page with the user details, also save the user details in the database here)
-
 UserRouter.get("/google-verify", async (req, res) => {
   try {
+    // check if the email is verified from the googel if not send error
     if (!req.user || !req.user.emails[0].verified || !req.user.id) {
       res.status(400).json({ msg: "Invalid access to route" });
       return;
@@ -44,29 +43,41 @@ UserRouter.get("/google-verify", async (req, res) => {
     };
 
     // save the user details in the database here
-    const userInDb = await db.user.findOne({
+    const userInDb = await User.findOne({
       where: {
         email: user.email,
       },
     });
 
     if (!userInDb) {
-      await db.user.create(user);
+      await User.create(user);
     }
     //  send the token to the frontend
     const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, {
       expiresIn: "7h",
     });
 
-    res.redirect("http://localhost:5173/");
+    // redirect the user to the frontend
+    res.redirect(
+      `https://findmydoctorapp.netlify.app?token=${token}&userName=${displayName}`
+    );
   } catch (error) {
-    res.status(500).json({ msg: "Something went wrong" });
+    res.status(500).json({ msg: "Something went wrong*", error });
   }
+});
+
+// route to get the cookies
+UserRouter.get("/get-cookies", (req, res) => {
+  try {
+    res.json({ cookies: req.cookies }); // send the cookies as a JSON response
+  } catch (error) {
+    res.status(500).json({ msg: "Something went wrong**", error });
+  }
+  // send the cookies as a JSON response
 });
 
 // ------------------ google authentication  ends---------------------
 
-// -------------------- gihub authentication ends  -------------------------
 
 // -------------------- Normal routes -------------------------
 
@@ -75,7 +86,7 @@ UserRouter.post("/signup", async (req, res) => {
 
   const hash = bcrypt.hashSync(password, 5);
   try {
-    const user = await db.user.findOne({
+    const user = await User.findOne({
       where: {
         email,
       },
@@ -86,7 +97,7 @@ UserRouter.post("/signup", async (req, res) => {
       return;
     }
 
-    const data = await db.user.create({
+    const data = await User.create({
       name,
       email,
       mobile,
@@ -94,31 +105,11 @@ UserRouter.post("/signup", async (req, res) => {
       role,
     });
 
-    // if (data) {
-    //   const msg = {
-    //     to: `${email}`,
-    //     from: "sourabh.rajput.22082001@gmail.com", // Use the email address or domain you verified above
-    //     subject: "find my doc",
-    //     text: "hello customer for registering",
-    //     html: `<div><h3 style="color:black">Welcome to Findmydoc</h3><p style="color: black; font-size: 10px;">Welcome to our website Findmydoc ! ${name} sir We are thrilled to have you here and look forward to providing you with valuable information, resources, and an engaging community. Whether you're here to learn something new, connect with like-minded individuals, or explore our offerings, we hope you'll find everything you need to make the most of your time here. Thank you for joining us, and we can't wait to see what you'll bring to our community!</p></div>`,
-    //   };
-    //   sgMail.send(msg).then(
-    //     () => {
-    //       console.log("data is send");
-    //     },
-    //     (error) => {
-    //       console.error(error);
-
-    //       if (error.response) {
-    //         console.error(error.response.body);
-    //       }
-    //     }
-    //   );
-    //   res.status(201).json({ msg: "User created" });
-    // } else {
-    //   res.status(500).json({ msg: "Something went wrong" });
-    // }
-    res.status(201).json({ msg: "User created" });
+    if (data) {
+      res.status(201).json({ msg: "User created" });
+    } else {
+      res.status(500).json({ msg: "Something went wrong" });
+    }
   } catch (error) {
     res.status(500).json({ msg: "Something went wrong" });
   }
@@ -127,45 +118,11 @@ UserRouter.post("/signup", async (req, res) => {
 UserRouter.post("/login", async (req, res) => {
   const { email, password } = req.body;
   try {
-    const user = await db.user.findOne({
+    const user = await User.findOne({
       where: {
         email,
       },
     });
-
-    let arr = [
-      "akshay@gmail.com",
-      "raj@gmail.com",
-      "sourabh@gmail.com",
-      "gaurav@gmail.com",
-    ];
-
-    if (arr.includes(email)) {
-      if (password === "findmydoc") {
-        const token = jwt.sign(
-          {
-            email: user.email,
-          },
-          process.env.JWT_SECRET,
-          {
-            expiresIn: "7h",
-          }
-        );
-
-        res.status(200).json({
-          msg: "Login successfull",
-          token,
-          userName: email,
-          role: "admin",
-        });
-        return;
-      } else {
-        res.status(400).json({ msg: "Invalid credentials" });
-        return;
-      }
-    }
-
-    // noram user login
 
     if (!user) {
       res.status(400).json({ msg: "User does not exist" });
@@ -184,27 +141,26 @@ UserRouter.post("/login", async (req, res) => {
           }
         );
 
-        if (user.dataValues.role === "doctor") {
+        if (user.dataValues.role == "admin") {
           res.status(200).json({
-            msg: "Login successfull",
             token,
             userName: user.name,
-            role: "doctor",
+            isAdmin: "admin",
+            msg: "Login Successful",
           });
           return;
+        } else {
+          res.status(200).json({
+            token,
+            userName: user.name,
+            msg: "Login Successful",
+          });
         }
-
-        res.status(200).json({
-          msg: "Login successfull",
-          token,
-          userName: user.name,
-        });
       } else {
         res.status(400).json({ msg: "Invalid credentials" });
       }
     });
   } catch (err) {
-    console.log(err);
     res.status(500).json({ msg: "Something went wrong" });
   }
 });
@@ -223,16 +179,16 @@ UserRouter.get("/userDetails", authentication, async (req, res) => {
   }
 });
 
-// UserRouter.get("/logout", authentication, (req, res) => {
-//   try {
-//     const token = req.header("Authorization").split(" ")[1];
-//     res.status(200).json({
-//       message: "Logged out successfully",
-//     });
-//   } catch (error) {
-//     res.status(500).json({ msg: "Something went wrong" });
-//   }
-// });
+UserRouter.get("/logout", authentication, (req, res) => {
+  try {
+    const token = req.header("Authorization").split(" ")[1];
+    res.status(200).json({
+      message: "Logged out successfully",
+    });
+  } catch (error) {
+    res.status(500).json({ msg: "Something went wrong" });
+  }
+});
 
 UserRouter.get(
   "/all-users",
@@ -240,7 +196,7 @@ UserRouter.get(
   auth(["admin"]),
   async (req, res) => {
     try {
-      const users = await db.user.findAll();
+      const users = await User.findAll();
       res.status(200).json({
         users,
       });
@@ -257,7 +213,7 @@ UserRouter.delete(
   async (req, res) => {
     try {
       const { id } = req.params;
-      const user = await db.user.findOne({
+      const user = await User.findOne({
         where: {
           id,
         },
@@ -268,7 +224,7 @@ UserRouter.delete(
         return;
       }
 
-      await db.user.destroy({
+      await User.destroy({
         where: {
           id,
         },
@@ -290,7 +246,7 @@ UserRouter.put(
       const { id } = req.params;
       const updatedValues = req.body;
 
-      const user = await db.user.findOne({
+      const user = await User.findOne({
         where: {
           id,
         },
@@ -301,7 +257,7 @@ UserRouter.put(
         return;
       }
 
-      await db.user.update(updatedValues, {
+      await User.update(updatedValues, {
         where: {
           id,
         },
@@ -320,7 +276,7 @@ UserRouter.get(
   auth(["admin"]),
   async (req, res) => {
     try {
-      const admins = await db.user.findAll({
+      const admins = await User.findAll({
         where: {
           role: "admin",
         },

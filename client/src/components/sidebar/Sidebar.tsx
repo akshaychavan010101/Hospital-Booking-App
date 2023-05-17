@@ -81,9 +81,12 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
                 </Text>
                 <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
             </Flex>
-            <h1 style={{ fontSize: "large", padding: "10px 0px 15px 40px" }} className={styles.navlink} onClick={() => {setAppointments(false); setProfile(true) }}>My Profile</h1>
-            <h1 style={{ fontSize: "large", padding: "10px 0px 15px 40px" }} className={styles.navlink} onClick={() => {setProfile(false); setAppointments(true) }}>My Appointments</h1>
+            <h1 style={{ fontSize: "large", padding: "10px 0px 15px 40px" }} className={styles.navlink}><Link to={"/"}>Home</Link></h1>
+            <h1 style={{ fontSize: "large", padding: "10px 0px 15px 40px" }} className={styles.navlink}><Link to={"/services"}>Services</Link></h1>
+            <h1 style={{ fontSize: "large", padding: "10px 0px 15px 40px" }} className={styles.navlink}><Link to={"/ourdoctors"}>Doctors</Link></h1>
             <h1 style={{ fontSize: "large", padding: "10px 0px 15px 40px" }} className={styles.navlink}><Link to={"/notifications"}>Notifications</Link></h1>
+            <h1 style={{ fontSize: "large", padding: "10px 0px 15px 40px" }} className={styles.navlink} onClick={() => {setAppointments(false); setProfile(true) }}>Profile</h1>
+            <h1 style={{ fontSize: "large", padding: "10px 0px 15px 40px" }} className={styles.navlink} onClick={() => {setProfile(false); setAppointments(true) }}>Appointments</h1>
 
         </Box>
     );

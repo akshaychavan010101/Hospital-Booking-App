@@ -29,10 +29,11 @@ export default function HomeMiddleComp() {
   if (token && userName) {
     sessionStorage.setItem("token", token ? token : "");
     sessionStorage.setItem("userName", userName ? userName : "");
+    sessionStorage.setItem("login", "true");
   }
 
   return (
-    <Container maxW={"5xl"}>  
+    <Container maxW={"5xl"}>
       <Stack
         textAlign={"center"}
         align={"center"}
@@ -45,9 +46,9 @@ export default function HomeMiddleComp() {
             fontWeight={600}
             fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
             lineHeight={"110%"}
-          // _before={{
-          //   backgroundColor: useColorModeValue("white", "#1a202c"),
-          // }}
+            // _before={{
+            //   backgroundColor: useColorModeValue("white", "#1a202c"),
+            // }}
           >
             Appointment Booking{" "}
             <Text as={"span"} color={"orange.400"}>
@@ -67,7 +68,7 @@ export default function HomeMiddleComp() {
             colorScheme={"orange"}
             bg={"orange.400"}
             _hover={{ bg: "orange.500" }}
-            display={sessionStorage.getItem("token") ? "none" : "block"}
+            display={sessionStorage.getItem("login") ? "none" : "block"}
           >
             <Link to="/user/login">Get started</Link>
           </Button>

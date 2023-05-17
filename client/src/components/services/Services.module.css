@@ -1,8 +1,14 @@
-.serviceCont{
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.serviceCont {
     margin-top: 10vh;
 }
 
-.poster{
+.poster {
     width: auto;
     height: 60%;
 }

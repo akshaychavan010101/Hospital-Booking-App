@@ -15,11 +15,14 @@ import {
   Stack,
   useColorMode,
   Center,
+  IconButton,
+  Collapse,
+  VStack,
 } from "@chakra-ui/react";
-import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-// import { ChevronDownIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
+import Swal from "sweetalert2";
 
 export default function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -41,9 +44,18 @@ export default function Navbar() {
   function Logout() {
     sessionStorage.clear();
     setIsLoggedIn(false);
-    window.location.reload();
-    window.location.href = `/`;
+    Swal.fire("Logout successfull").then(() => {
+      setTimeout(() => {
+        window.location.href = `/`;
+      }, 1000);
+    });
   }
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
     <>
@@ -53,12 +65,100 @@ export default function Navbar() {
         className={styles.navbarContainer}
       >
         <Flex
+          position={"relative"}
           h={16}
           alignItems={"center"}
           justifyContent={"space-between"}
           wrap={{ base: "wrap", md: "nowrap" }} // Added wrap property
         >
-          <Box marginLeft={"30px"}>
+          <Box
+            className={styles.hamIcon}
+            position={"absolute"}
+            top={2}
+            left={-2}
+          >
+            <IconButton
+              icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+              size="md"
+              variant="ghost"
+              aria-label="Toggle menu"
+              onClick={toggleMenu}
+            />
+            <Collapse in={isOpen} animateOpacity>
+              <VStack
+                p={4}
+                spacing={2}
+                align="start"
+                bg="gray.100"
+                rounded="md"
+                bgColor={useColorModeValue("gray.100", "gray.800")}
+              >
+                {/* Add your menu items here */}
+                <Box
+                  _hover={{
+                    backgroundColor: useColorModeValue("gray.50", "gray.700"),
+                    border: "1px solid silver",
+                    borderRadius: "10",
+                  }}
+                  width={"100%"}
+                  padding={1}
+                >
+                  <Link to={"/"}> Home</Link>
+                </Box>
+                <Box
+                  _hover={{
+                    backgroundColor: useColorModeValue("gray.50", "gray.700"),
+                    border: "1px solid silver",
+                    borderRadius: "10",
+                  }}
+                  width={"100%"}
+                  padding={1}
+                >
+                  <Link to={"/ourdoctors"}> Our Doctors</Link>{" "}
+                </Box>
+                <Box
+                  _hover={{
+                    backgroundColor: useColorModeValue("gray.50", "gray.700"),
+                    border: "1px solid silver",
+                    borderRadius: "10",
+                  }}
+                  width={"100%"}
+                  padding={1}
+                >
+                  <Link to={"/services"}> Our Services</Link>
+                </Box>
+                <Box
+                  _hover={{
+                    backgroundColor: useColorModeValue("gray.50", "gray.700"),
+                    border: "1px solid silver",
+                    borderRadius: "10",
+                  }}
+                  width={"100%"}
+                  padding={1}
+                >
+                  <Link to={"/appointment"}> Appointments</Link>
+                </Box>
+                <Box
+                  _hover={{
+                    backgroundColor: useColorModeValue("gray.50", "gray.700"),
+                    border: "1px solid silver",
+                    borderRadius: "10",
+                  }}
+                  width={"100%"}
+                  padding={1}
+                >
+                  <Link
+                    to={"/user/login"}
+                    style={{ display: isLoggedIn ? "none" : "block" }}
+                  >
+                    {" "}
+                    Sign In
+                  </Link>
+                </Box>
+              </VStack>
+            </Collapse>
+          </Box>
+          <Box marginLeft={"25px"} className={styles.logo}>
             <Link to="/">
               <img src={logo} alt="Logo" width={"100px"} />
             </Link>
@@ -128,10 +228,14 @@ export default function Navbar() {
                   Sign In
                 </Box>
               </Link>
-             
             )}
           </Flex>
-          <Link to="/notifications">
+          <Link
+            to="/notifications"
+            style={{
+              display: sessionStorage.getItem("login") ? "block" : "none",
+            }}
+          >
             🔔
           </Link>
 
@@ -163,17 +267,36 @@ export default function Navbar() {
                     </Box>
                   ) : (
                     <Box id="userName" fontWeight={"bold"} textAlign={"center"}>
-                     Please Sign In
+                      Login to continue
                     </Box>
                   )}
 
                   {/* <Box textAlign={"center"}>john.doe@example.com</Box> */}
                   <br />
-                  <MenuItem display={isLoggedIn ? "block" : "none"}>Change Profile Photo</MenuItem>
-                  <MenuItem display={isLoggedIn? "block" : "none"}>
+                  <MenuItem
+                    style={{
+                      display: sessionStorage.getItem("login")
+                        ? "block"
+                        : "none",
+                    }}
+                  >
+                    Change Profile Photo
+                  </MenuItem>
+                  <MenuItem
+                    style={{
+                      display: sessionStorage.getItem("login")
+                        ? "block"
+                        : "none",
+                    }}
+                  >
                     <Link to="/user/dashboard">Dashboard</Link>
                   </MenuItem>
-                  <MenuItem onClick={Logout} style={{display : isLoggedIn ? "block" : "none"}}>Logout</MenuItem>
+                  <MenuItem
+                    onClick={Logout}
+                    style={{ display: isLoggedIn ? "block" : "none" }}
+                  >
+                    Logout
+                  </MenuItem>
                 </MenuList>
               </Menu>
             </Stack>

@@ -30,3 +30,18 @@ body{
 .signin:hover{
     color: rgb(18, 22, 24);
 }
+
+.logo{
+    width: 90px;
+}
+
+@media screen and (min-width:477) and (max-width:800px) {
+    .logo{
+        width: 65px;
+    }
+}
+@media screen and (max-width:476px) {
+    .logo{
+        width: 60px;
+    }
+}

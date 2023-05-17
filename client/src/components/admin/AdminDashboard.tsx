@@ -15,80 +15,23 @@ interface Myprops {
 }
 
 export default function AdminDashboard(props: Myprops) {
-
-  // function patientDisplay(){
-  //     useEffect(()=>{
-  //         fetch(`${baseURL}/users/all-users`)
-  //         .then((res)=>{
-  //             return res.json()
-  //         })
-  //         .then((data)=>{
-  //             console.log(data)
-  //         })
-  //         .catch((err)=>{
-  //             console.log(err)
-  //         });
-  //     })
-  //     return(
-  //         <div>
-  //             <h1>Admin</h1>
-  //         </div>
-  //     )
-  // }
-
-  // function doctorsDisplay(){
-  //     useEffect(()=>{
-  //         fetch(`${baseURL}/doctors/all-doctors`)
-  //         .then((res)=>{
-  //             return res.json()
-  //         })
-  //         .then((data)=>{
-  //             console.log(data)
-  //         })
-  //         .catch((err)=>{
-  //             console.log(err)
-  //         });
-  //     })
-  //     return(
-  //         <div>
-  //             <h1>Admin</h1>
-  //         </div>
-  //     )
-  // }
-
-  // function appointmentsDisplay(){
-  //     useEffect(()=>{
-  //         fetch(`${baseURL}/appointments/all-appointments`)
-  //         .then((res)=>{
-  //             return res.json()
-  //         })
-  //         .then((data)=>{
-  //             console.log(data)
-  //         })
-  //         .catch((err)=>{
-  //             console.log(err)
-  //         });
-  //     })
-  //     return(
-  //         <div>
-  //             <h1>Admin</h1>
-  //         </div>
-  //     )
-  // }
-
-  window.onload = function () {
-    const isAdmin = sessionStorage.getItem("isAdmin");
-    if (isAdmin !== "admin") {
-      window.location.href = "http://localhost:5173/";
-    }
-  };
-
   const { Home, Admins, Patients, Doctors, Appointments } = props;
+  // window.onload = function () {
+  //   const isAdmin = sessionStorage.getItem("isAdmin");
+  //   console.log(isAdmin);
 
+  //   if (isAdmin !== "admin") {
+  //     setTimeout(() => {
+  //       window.location.href = `/`;
+  //     }, 100);
+  //   }
+  // };
   // const [data, setData] = useState([]);
   return (
     <div className={styles.dashContainer}>
-      {Home ? (
+      {sessionStorage.getItem("isAdmin") !== "admin" ? (
+        (window.location.href = "/")
+      ) : Home ? (
         <Adminstat />
       ) : Admins ? (
         <Renderadmin />

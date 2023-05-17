@@ -24,20 +24,22 @@ import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 
 export default function SignupCard() {
-  const baseURL = "https://jittery-shirt-tuna.cyclic.app"
+  const [loading, setLoading] = useState(false);
+
+  const baseURL = "https://jittery-shirt-tuna.cyclic.app";
 
   const [showPassword, setShowPassword] = useState(false);
 
-  async function handleSignup(role: string) {
-    const name: string = (document.getElementById("username") as HTMLInputElement)
+  async function handleSignup() {
+    let name: string = (document.getElementById("username") as HTMLInputElement)
       .value;
-    const email: string = (
+    let email: string = (
       document.getElementById("userEmail") as HTMLInputElement
     ).value;
-    const password: string = (
+    let password: string = (
       document.getElementById("password") as HTMLInputElement
     ).value;
-    const mobile: string = (
+    let mobile: string = (
       document.getElementById("mobile_number") as HTMLInputElement
     ).value;
 
@@ -47,51 +49,61 @@ export default function SignupCard() {
       return;
     }
 
-    const obj = {
+    let obj = {
       name,
       email,
       password,
       mobile,
-      role,
     };
     try {
-      const res = await fetch(
-        `${baseURL}/user/signup`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-          },
-          body: JSON.stringify(obj),
-        }
-      );
+      setLoading(true);
+      let res = await fetch(`${baseURL}/user/signup`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify(obj),
+      });
 
-      const data = await res.json();
+      let data = await res.json();
       console.log(data);
       if (data.msg == "User created") {
+        setLoading(false);
         Swal.fire("User Registered").then(() => {
-          window.location.href = `/user/login`;
+          setTimeout(() => {
+            window.location.href = `/user/login`;
+          }, 1000);
+        });
+      } else {
+        setLoading(false);
+        Swal.fire(data.msg).then(() => {
+          setTimeout(() => {
+            window.location.href = `/user/login`;
+          }, 1000);
         });
       }
     } catch (error: any) {
+      setLoading(false);
       Swal.fire("Failed to Register, try again");
     }
   }
 
   return (
     <Flex
-      minH={"110vh"}
+      minH={"106vh"}
       align={"center"}
       justify={"center"}
       bg={useColorModeValue("gray.50", "gray.800")}
     >
-      <Stack spacing={8} mx={"auto"} maxW={"lg"} mt={2} px={6}>
+      <Stack spacing={8} mx={"auto"} maxW={"lg"} py={2} px={6}>
         <Stack align={"center"}>
           <Heading fontSize={"4xl"} textAlign={"center"}>
             Sign up
           </Heading>
-          
+          <Text fontSize={"lg"} color={"gray.600"}>
+            to enjoy all of our cool features ✌️
+          </Text>
         </Stack>
         <Box
           rounded={"lg"}
@@ -137,41 +149,22 @@ export default function SignupCard() {
                 </InputRightElement>
               </InputGroup>
             </FormControl>
-            <Stack spacing={5} pt={2}>
-              <Flex justify={"space-around"} gap={"10px"}>
-                <Button
-                  loadingText="Submitting"
-                  size="lg"
-                  bg={"blue.400"}
-                  color={"white"}
-                  _hover={{
-                    bg: "blue.500",
-                  }}
-                  onClick={() => {
-                    handleSignup("user");
-                  }}
-                >
-                  Sign up as User
-                </Button>
-                <Button
-                  loadingText="Submitting"
-                  size="lg"
-                  bg={"blue.400"}
-                  color={"white"}
-                  _hover={{
-                    bg: "blue.500",
-                  }}
-                  onClick={() => {
-                    handleSignup("doctor");
-                  }}
-                >
-                  Sign up as Doctor
-                </Button>
-              </Flex>
-              <p style={{fontSize : "small" , textAlign : "center"}}>* Terms & Conditions apply</p>
+            <Stack spacing={2} pt={2}>
+              <Button
+                loadingText="Submitting"
+                size="lg"
+                bg={"blue.400"}
+                color={"white"}
+                _hover={{
+                  bg: "blue.500",
+                }}
+                onClick={handleSignup}
+              >
+                {loading ? <p>Loading...</p> : "Sign up"}
+              </Button>
             </Stack>
 
-            <Stack pt={1}>
+            <Stack pt={2}>
               <Text align={"center"}>
                 Already a user?{" "}
                 <Link to="/user/login" color={"blue.400"}>

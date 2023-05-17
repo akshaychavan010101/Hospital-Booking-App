@@ -9,4 +9,6 @@ const auth = (passedRole) => {
   };
 };
 
-module.exports = { auth };
+module.exports = {
+  auth,
+};

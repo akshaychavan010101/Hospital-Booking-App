@@ -21,17 +21,13 @@ import {
 } from "@chakra-ui/react";
 
 export default function Login() {
-  const frontendUrl = "https://findmydoctor.onrender.com";
   const baseURL = "https://jittery-shirt-tuna.cyclic.app";
-  // const payload const [submitted, setSubmitted] = useState(false);
-  // const [email, setEmail] = useState("")
-  // const [pass, setPass] = useState("")
   const [login, setLogin] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  if(login){
-    sessionStorage.setItem("login","true");
+  if (login) {
+    sessionStorage.setItem("login", "true");
   }
-  
 
   async function handleSignIn() {
     const email: string = (document.getElementById("email") as HTMLInputElement)
@@ -48,9 +44,9 @@ export default function Login() {
 
     try {
       const payload = { email, password };
-     
 
-      const fData = await fetch(`${baseURL}/user/login`, {
+      setLoading(true);
+      let fData = await fetch(`${baseURL}/user/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -60,27 +56,41 @@ export default function Login() {
       });
 
       const data = await fData.json();
-      // console.log("HELLO",data);
       if (data.token) {
         sessionStorage.setItem("token", data.token);
         sessionStorage.setItem("userName", data.userName);
         setLogin(true);
+        setLoading(false);
         Swal.fire(data.msg);
 
+        console.log(data);
+        
         if (data.msg == "Login Successful") {
           if (data.isAdmin == "admin") {
             sessionStorage.setItem("isAdmin", "admin");
-            window.location.href = `${frontendUrl}/admin/dashboard`;
+            Swal.fire(data.msg).then(() => {
+              setTimeout(() => {
+                window.location.href = `/admin/dashboard`;
+              }, 1000);
+            });
           } else {
-            window.location.href = `${frontendUrl}`;
+            Swal.fire(data.msg).then(() => {
+              setTimeout(() => {
+                window.location.href = `/`;
+              }, 1000);
+            });
           }
         }
       } else {
         setLogin(false);
-        Swal.fire("Your email is not registered");
+        Swal.fire("Email is not registered/Wrong Credentials").then(() => {
+          setLoading(false);
+        });
       }
     } catch (error) {
-      alert(error);
+      Swal.fire("Something went wrong").then(() => {
+        setLoading(false);
+      });
     }
   }
 
@@ -90,19 +100,18 @@ export default function Login() {
   }
 
   async function GoogleLogin() {
-    window.location.href =
-      "https://jittery-shirt-tuna.cyclic.app/user/auth/google";
+    window.location.href = `${baseURL}/user/auth/google`;
   }
 
   return (
     <Flex
       className={styles.loginContainer}
-      minH={"105vh"}
+      minH={"110vh"}
       align={"center"}
       justify={"center"}
       bg={useColorModeValue("gray.50", "gray.800")}
     >
-      <Stack spacing={8} mx={"auto"} maxW={"lg"} py={4} px={6}>
+      <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
           <Heading fontSize={"4xl"}>Sign in to your account</Heading>
           {/* <Text fontSize={'lg'} color={'gray.600'}>
@@ -135,6 +144,7 @@ export default function Login() {
                   Forgot password?
                 </Link>
               </Stack>
+
               <Button
                 bg={"blue.400"}
                 color={"white"}
@@ -143,10 +153,10 @@ export default function Login() {
                 }}
                 onClick={handleSignIn}
               >
-                Sign in
+                {loading ? <p>Loading...</p> : "Sign in"}
               </Button>
 
-              <Center >
+              <Center p={2}>
                 <Stack spacing={2} align={"center"} maxW={"md"} w={"full"}>
                   {/* Facebook */}
                   {/* <Button w={'full'} colorScheme={'facebook'} leftIcon={<FaFacebook />}>
@@ -191,7 +201,6 @@ export default function Login() {
               <Text align={"center"}>
                 Don't have an account?{" "}
                 <Link to="/user/signup" color={"blue.400"}>
-                  {" "}
                   <u>Click Here</u>
                 </Link>
               </Text>
