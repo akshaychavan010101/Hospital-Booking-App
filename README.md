@@ -141,3 +141,4 @@ Special Thanks to..
     Chakra-UI
     Imagur
     Planetscale
+    Netlify
