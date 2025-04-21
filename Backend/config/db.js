@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
-require("dotenv").config();
+// const mongoose = require("mongoose");
+// require("dotenv").config();
 
-const connection = mongoose.connect(process.env.MONGO_URL);
+// const connection = mongoose.connect(process.env.MONGO_URL);
 
 //-------------- Sequelize ------------------
 
@@ -23,4 +23,4 @@ const sequelize = new Sequelize(
   }
 );
 
-module.exports = { sequelize, connection };
+module.exports = { sequelize };

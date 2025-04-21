@@ -8,7 +8,7 @@ const path = require("path");
 // new code for google auth
 const session = require("express-session");
 const passport = require("passport");
-const { sequelize, connection } = require("./config/db");
+const { sequelize } = require("./config/db");
 const { User } = require("./models/user");
 const { v4: uuidv4 } = require("uuid");
 const { AppointmentRouter } = require("./routes/appointments.routes");
