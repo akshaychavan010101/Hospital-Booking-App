@@ -165,7 +165,7 @@ app.listen(process.env.PORT, async () => {
         console.error("Error creating database tables:", error);
       });
 
-    await connection;
+    // await connection;
     console.log(
       `Server is running on port ${process.env.PORT} and connected to DB`
     );

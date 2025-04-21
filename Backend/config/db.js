@@ -17,7 +17,7 @@ const sequelize = new Sequelize(
     dialect: "mysql",
     dialectOptions: {
       ssl: {
-        ca: require("fs").readFileSync("./assets/cacert.pem"),
+        "rejectUnauthorized": false
       },
     },
   }
