@@ -12,7 +12,8 @@ function RenderPatients() {
   const [patients, setPatients] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const baseURL = "https://jittery-shirt-tuna.cyclic.app";
+  // const baseURL = "https://jittery-shirt-tuna.cyclic.app";
+  const baseURL = import.meta.env.VITE_BASE_URL;
 
   useEffect(() => {
     setLoading;

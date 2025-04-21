@@ -32,7 +32,8 @@ export default function DoctorDetails() {
   const [desc, setdesc] = useState(Object);
   const [loading, setLoading] = useState(false);
 
-  const baseURL = "https://jittery-shirt-tuna.cyclic.app";
+  // const baseURL = "https://jittery-shirt-tuna.cyclic.app";
+  const baseURL = import.meta.env.VITE_BASE_URL;
 
   useEffect(() => {
     setLoading(true);

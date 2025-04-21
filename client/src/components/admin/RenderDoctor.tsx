@@ -13,7 +13,8 @@ function RenderDoctor() {
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const baseURL = "https://jittery-shirt-tuna.cyclic.app";
+  // const baseURL = "https://jittery-shirt-tuna.cyclic.app";
+  const baseURL = import.meta.env.VITE_BASE_URL;
 
   useEffect(() => {
     setLoading;
@@ -28,7 +29,6 @@ function RenderDoctor() {
         return res.json();
       })
       .then((data) => {
-
         setAdd(false);
         setLoading(false);
         setDoctors(data.doctors);
@@ -77,7 +77,7 @@ function RenderDoctor() {
             const form = document.getElementById("formdata") as HTMLFormElement;
             const formData = new FormData(form);
             const data = Object.fromEntries(formData);
-     
+
             const payload = {
               ...data,
               education:
@@ -97,7 +97,7 @@ function RenderDoctor() {
               mobile: "424424265",
               availability: 5,
             };
-  
+
             setLoading(true);
 
             fetch(`${baseURL}/doctors/add-doctor`, {

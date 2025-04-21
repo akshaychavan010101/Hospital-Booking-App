@@ -15,7 +15,8 @@ import { motion } from "framer-motion";
 import Swal from "sweetalert2";
 
 const Appointment = () => {
-  const baseURL = "https://jittery-shirt-tuna.cyclic.app";
+  // const baseURL = "https://jittery-shirt-tuna.cyclic.app";
+  const baseURL = import.meta.env.VITE_BASE_URL;
 
   const [fetchData, setFetchData] = useState([]);
   const [loading, setLoading] = useState(false);

@@ -26,7 +26,8 @@ import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 export default function SignupCard() {
   const [loading, setLoading] = useState(false);
 
-  const baseURL = "https://jittery-shirt-tuna.cyclic.app";
+  // const baseURL = "https://jittery-shirt-tuna.cyclic.app";
+  const baseURL = import.meta.env.VITE_BASE_URL;
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -65,6 +66,7 @@ export default function SignupCard() {
         },
         body: JSON.stringify(obj),
       });
+      console.log(">>>>", res);
 
       let data = await res.json();
       console.log(data);

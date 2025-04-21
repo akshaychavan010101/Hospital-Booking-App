@@ -21,7 +21,8 @@ import {
 } from "@chakra-ui/react";
 
 export default function Login() {
-  const baseURL = "https://jittery-shirt-tuna.cyclic.app";
+  // const baseURL = "https://jittery-shirt-tuna.cyclic.app";
+  const baseURL = import.meta.env.VITE_BASE_URL;
   const [login, setLogin] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -64,7 +65,7 @@ export default function Login() {
         Swal.fire(data.msg);
 
         console.log(data);
-        
+
         if (data.msg == "Login Successful") {
           if (data.isAdmin == "admin") {
             sessionStorage.setItem("isAdmin", "admin");

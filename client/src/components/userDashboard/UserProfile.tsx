@@ -13,7 +13,8 @@ import patientLogo from "../../assets/patientLogo.png";
 import { useEffect, useState } from "react";
 
 export default function RenderUserProfile() {
-  const baseURL = "https://jittery-shirt-tuna.cyclic.app";
+  // const baseURL = "https://jittery-shirt-tuna.cyclic.app";
+  const baseURL = import.meta.env.VITE_BASE_URL;
 
   const [user, setUser] = useState<any>(null);
   useEffect(() => {
